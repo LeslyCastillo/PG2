@@ -85,7 +85,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">Registros</li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{route("vehiculos.index")}}" class="nav-link">
               <i class="nav-icon fas fa-car"></i>
 
               <p>
@@ -102,7 +102,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{route("clientes.index")}}" class="nav-link">
 
               <i class="nav-icon fas fa-user-edit"></i>
               <p>
@@ -110,6 +110,14 @@
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="{{route("servicios.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    <p>
+                        Servicios
+                    </p>
+                </a>
+            </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
 
@@ -133,7 +141,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+
           </div><!-- /.col -->
           <div class="col-sm-6">
           </div><!-- /.col -->
