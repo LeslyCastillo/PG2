@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/servicios', [\App\Http\Controllers\ServiciosController::class, 'index'])->name('servicios.index');
+route::get("/clientes", [\App\Http\Controllers\ClientesController::class, 'index'])->name("clientes.index");
