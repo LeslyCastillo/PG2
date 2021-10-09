@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('/servicios', [\App\Http\Controllers\ServiciosController::class, 'index'])->name('servicios.index');
 route::get("/clientes", [\App\Http\Controllers\ClientesController::class, 'index'])->name("clientes.index");
 route::get("/vehiculos", [\App\Http\Controllers\VehiculosController::class, 'index'])->name("vehiculos.index");
+route::get("/lineas", [\App\Http\Controllers\LineasController::class, 'index'])->name("lineas.index");

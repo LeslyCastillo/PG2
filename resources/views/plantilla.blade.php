@@ -44,9 +44,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.html" class="nav-link">Inicio</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">inicio dos</a>
-      </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -93,11 +91,20 @@
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="{{route("lineas.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-car"></i>
+
+                    <p>
+                        Lineas
+                    </p>
+                </a>
+            </li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
-                Mecanicos
+                Empleados
               </p>
             </a>
           </li>
