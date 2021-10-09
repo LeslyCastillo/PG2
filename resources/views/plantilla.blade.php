@@ -56,7 +56,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -87,7 +87,7 @@
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-car"></i>
-          
+
               <p>
                 Vehiculos
               </p>
@@ -103,7 +103,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/gallery.html" class="nav-link">
-              
+
               <i class="nav-icon fas fa-user-edit"></i>
               <p>
                 Clientes
@@ -112,7 +112,7 @@
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              
+
               <i class="nav-icon far fa-newspaper"></i>
               <p>
                 Orden de trabajo
@@ -145,7 +145,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
+          @yield('contenido')
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -197,8 +197,6 @@
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 </body>
