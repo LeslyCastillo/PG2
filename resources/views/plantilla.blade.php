@@ -92,8 +92,18 @@
             </a>
           </li>
             <li class="nav-item">
+                <a href="{{route("vehiculos.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-clipboard-list"></i>
+
+                    <p>
+                        Tipos de Vehiculos
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route("lineas.index")}}" class="nav-link">
                     <i class="nav-icon fas fa-grip-lines"></i>
+
                     <p>
                         Lineas
                     </p>
@@ -141,6 +151,14 @@
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="{{route("pagos.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <p>
+                        Pagos
+                    </p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
