@@ -92,7 +92,7 @@
             </a>
           </li>
             <li class="nav-item">
-                <a href="{{route("vehiculos.index")}}" class="nav-link">
+                <a href="{{route("tipos_vehiculos.index")}}" class="nav-link">
                     <i class="nav-icon fas fa-clipboard-list"></i>
 
                     <p>
