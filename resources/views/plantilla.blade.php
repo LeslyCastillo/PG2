@@ -93,10 +93,17 @@
           </li>
             <li class="nav-item">
                 <a href="{{route("lineas.index")}}" class="nav-link">
-                    <i class="nav-icon fas fa-car"></i>
-
+                    <i class="nav-icon fas fa-grip-lines"></i>
                     <p>
                         Lineas
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("marcas.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-check-circle"></i>
+                    <p>
+                        Marcas
                     </p>
                 </a>
             </li>
