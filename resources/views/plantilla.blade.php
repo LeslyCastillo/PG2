@@ -81,7 +81,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">Registros</li>
+          <li class="nav-header">MENU</li>
           <li class="nav-item">
             <a href="{{route("vehiculos.index")}}" class="nav-link">
               <i class="nav-icon fas fa-car"></i>
@@ -153,9 +153,17 @@
           </li>
             <li class="nav-item">
                 <a href="{{route("pagos.index")}}" class="nav-link">
-                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         Pagos
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("tipos_pagos.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <p>
+                        Formas de Pago
                     </p>
                 </a>
             </li>

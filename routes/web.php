@@ -25,5 +25,6 @@ route::get("/marcas", [\App\Http\Controllers\MarcasController::class, 'index'])-
 route::get("/ordenestrabajos",[\App\Http\Controllers\OrdenesTrabajosController::class, 'index'])->name("orden_trabajo.index");
 route::get("/pagos", [\App\Http\Controllers\PagosController::class, 'index'])->name("pagos.index");
 route::get("/tiposvehiculos",[\App\Http\Controllers\TiposVehiculosController::class,'index'])->name("tipos_vehiculos.index");
+route::get("/tipospagos",[\App\Http\Controllers\TiposPagosController::class,'index'])->name("tipos_pagos.index");
 
 
