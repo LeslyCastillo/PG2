@@ -7,7 +7,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">No.</th>
             <th scope="col">Nombre</th>
             <th scope="col">Nit</th>
             <th scope="col">Telefono</th>

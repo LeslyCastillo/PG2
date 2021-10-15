@@ -7,11 +7,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">No.</th>
             <th scope="col">Placa</th>
             <th scope="col">Modelo</th>
             <th scope="col">color</th>
-            <th scope="col">Lineas</th>
+            <th scope="col">Linea</th>
             <th scope="col">Tipo de Vehiculo</th>
 
         </tr>
