@@ -2,7 +2,7 @@
 
 @section('contenido')
     <h1>Marcas</h1>
-
+    <a class="btn btn-primary" href="{{route('marcas.created')}}">Nueva Marca</a>
 
     <table class="table">
         <thead>

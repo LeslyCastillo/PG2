@@ -2,7 +2,7 @@
 
 @section('contenido')
     <h1>Formas de Pagos</h1>
-
+    <a class="btn btn-primary" href="{{route('tipos_pagos.created')}}">Nueva forma de pago</a>
 
     <table class="table">
         <thead>

@@ -2,7 +2,7 @@
 
 @section('contenido')
     <h1>Pagos</h1>
-
+    <a class="btn btn-primary" href="{{route('pagos.created')}}">Nuevo Pago</a>
 
     <table class="table">
         <thead>

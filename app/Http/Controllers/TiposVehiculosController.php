@@ -11,4 +11,15 @@ class TiposVehiculosController extends Controller
         $TiposVehiculos=TipoVehiculo::all();
         return view("tipos_vehiculos.index", compact("TiposVehiculos"));
     }
+
+    public function created(){
+        return view('tipos_vehiculos.created');
+    }
+
+    public function store(Request $request){
+        $tipo_vehiculo=new tipovehiculo;//modelo
+        $tipo_vehiculo->descripcion=$request->descripcion;
+        $tipo_vehiculo->save();
+        return redirect()->route('tipos_vehiculos.index');//name de la ruta
+    }
 }

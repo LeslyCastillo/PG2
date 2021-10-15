@@ -11,4 +11,15 @@ class MarcasController extends Controller
         $marcas=Marca::all();
         return view("marcas.index", compact("marcas"));
     }
+
+    public function created(){
+        return view('marcas.created');
+    }
+
+    public function store(Request $request){
+        $marca=new marca;//modelo
+        $marca->marca=$request->marca;
+        $marca->save();
+        return redirect()->route('marcas.index');//name de la ruta
+    }
 }
