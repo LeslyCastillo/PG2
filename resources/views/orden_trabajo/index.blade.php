@@ -2,7 +2,9 @@
 
 @section('contenido')
     <h1>Ordenes de Trabajo</h1>
-    <a class="btn btn-primary" href="{{route('orden_trabajo.created')}}">Nueva Orden de Trabajo</a>
+    <a class="btn btn-primary" href="{{route('orden_trabajo.created')}}">
+        <i class="fas fa-plus-circle"></i>
+         Nueva Orden de Trabajo</a>
 
     <table class="table">
         <thead>

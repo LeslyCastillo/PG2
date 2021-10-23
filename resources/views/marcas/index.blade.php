@@ -2,7 +2,9 @@
 
 @section('contenido')
     <h1>Marcas</h1>
-    <a class="btn btn-primary" href="{{route('marcas.created')}}">Nueva Marca</a>
+    <a class="btn btn-primary" href="{{route('marcas.created')}}">
+        <i class="fas fa-plus-circle"></i>
+         Nueva Marca</a>
 
     <table class="table">
         <thead>

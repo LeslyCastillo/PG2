@@ -1,16 +1,30 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1>Lineas</h1>
+    <h1 class="text-center">LÍNEAS</h1>
 
     <form action="{{route("lineas.store")}}" method="post">
         @csrf
-        <div class="form-group">
-            <label>Linea</label>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Línea</label>
             <input name="linea" type="text" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="form-group col-md-6">
+            <label>Marca</label>
+            <select name="marca" class="form-control" aria-label="Default select example">
+                <option selected hidden>Selecciona una marca</option>
+                @foreach($marcas as $marca)
+                    <option value="{{$marca->id}}">{{$marca->marca}}</option>
+                @endforeach
+            </select>
+        </div>
+        </div>
+
+        <div  class=" d-flex mt-4 justify-content-center">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
     </form>
 
 @endsection

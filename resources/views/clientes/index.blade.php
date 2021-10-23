@@ -2,7 +2,8 @@
 
 @section('contenido')
     <h1>Clientes</h1>
-    <a class="btn btn-primary" href="{{route('clientes.created')}}">Nuevo Cliente</a>
+    <a class="btn btn-primary" href="{{route('clientes.created')}}">
+        <i class="fas fa-plus-circle"></i> Nuevo Cliente</a>
 
     <table class="table">
         <thead>

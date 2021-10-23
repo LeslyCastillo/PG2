@@ -2,7 +2,9 @@
 
 @section('contenido')
     <h1>Tipos de Vehiculos</h1>
-    <a class="btn btn-primary" href="{{route('tipos_vehiculos.created')}}">Nuevo Tipo de Vehiculo</a>
+    <a class="btn btn-primary" href="{{route('tipos_vehiculos.created')}}">
+        <i class="fas fa-plus-circle"></i>
+         Nuevo Tipo de Vehiculo</a>
 
     <table class="table">
         <thead>

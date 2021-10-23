@@ -2,7 +2,9 @@
 
 @section('contenido')
     <h1>Lineas</h1>
-    <a class="btn btn-primary" href="{{route('lineas.created')}}">Nueva Linea</a>
+    <a class="btn btn-primary" href="{{route('lineas.created')}}">
+        <i class="fas fa-plus-circle"></i>
+        Nueva Linea</a>
 
     <table class="table">
         <thead>
@@ -18,7 +20,7 @@
             <tr>
                 <th scope="row">{{$linea->id}}</th>
                 <td>{{$linea->linea}}</td>
-                <td>{{$linea->marcas_id}}</td>
+                <td>{{$linea->marca}}</td>
 
             </tr>
         @endforeach

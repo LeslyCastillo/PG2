@@ -2,7 +2,9 @@
 
 @section('contenido')
     <h1>Servicios</h1>
-    <a class="btn btn-primary" href="{{route('servicios.created')}}">Crear Servicios</a>
+    <a class="btn btn-primary" href="{{route('servicios.created')}}">
+        <i class="fas fa-plus-circle"></i>
+         Crear Servicios</a>
 
 
         <table class="table">
