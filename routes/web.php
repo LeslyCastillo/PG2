@@ -13,17 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('home');
 //Servicios
 Route::get('/servicios', [\App\Http\Controllers\ServiciosController::class, 'index'])->name('servicios.index');
 Route::get('/crear_servicios',[\App\Http\Controllers\ServiciosController::class, 'created'])->name("servicios.created");
 Route::post("/guardar_servicios", [\App\Http\Controllers\ServiciosController::class, 'store'])->name("servicios.store");
+
 //Clientes
 Route::get("/clientes", [\App\Http\Controllers\ClientesController::class, 'index'])->name("clientes.index");
 Route::get('/crear_clientes',[\App\Http\Controllers\ClientesController::class, 'created'])->name("clientes.created");
 Route::post("/guardar_clientes", [\App\Http\Controllers\ClientesController::class, 'store'])->name("clientes.store");
+route::delete("/delete/{id}",[\App\Http\Controllers\ClientesController::class, 'delete'])->name('delete');
 //vehiculos
 Route::get("/vehiculos", [\App\Http\Controllers\VehiculosController::class, 'index'])->name("vehiculos.index");
 Route::get('/crear_vehiculos',[\App\Http\Controllers\VehiculosController::class, 'created'])->name("vehiculos.created");
@@ -36,6 +37,7 @@ Route::post("/guardar_lineas", [\App\Http\Controllers\LineasController::class, '
 Route::get("/marcas", [\App\Http\Controllers\MarcasController::class, 'index'])->name("marcas.index");
 Route::get('/crear_marcas',[\App\Http\Controllers\MarcasController::class, 'created'])->name("marcas.created");
 Route::post("/guardar_marcas", [\App\Http\Controllers\MarcasController::class, 'store'])->name("marcas.store");
+Route::post("/buscar_marcas", [\App\Http\Controllers\MarcasController::class, 'find'])->name("marca.buscar");
 //Ordenes de trabajo
 Route::get("/ordenestrabajos",[\App\Http\Controllers\OrdenesTrabajosController::class, 'index'])->name("orden_trabajo.index");
 Route::get('/crear_ordenestrabajos',[\App\Http\Controllers\OrdenesTrabajosController::class, 'created'])->name("orden_trabajo.created");

@@ -14,6 +14,7 @@
             <th scope="col">Telefono</th>
             <th scope="col">Dirección</th>
             <th scope="col">Correo</th>
+            <th scope="col">Acciones</th>
 
         </tr>
         </thead>
@@ -26,6 +27,12 @@
                 <td>{{$cliente->telefono}}</td>
                 <td>{{$cliente->direccion}}</td>
                 <td>{{$cliente->correo}}</td>
+               <td> <form action="{{route('delete', $cliente->id)}}" method="post">
+                    @csrf @method('DELETE')
+                    <button type="submit" onclick="return confirm('¿Seguro de borrar usuario?');" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form></td>
             </tr>
         @endforeach
         </tbody>

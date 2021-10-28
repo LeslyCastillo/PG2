@@ -22,4 +22,8 @@ class MarcasController extends Controller
         $marca->save();
         return redirect()->route('marcas.index');//name de la ruta
     }
+
+    public function find(){
+        return Marca::all();
+    }
 }

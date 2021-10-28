@@ -27,11 +27,22 @@ class OrdenesTrabajosController extends Controller
     }
 
     public function store(Request $request){
+        $buscar_marca=Marca::where('marca', strtoupper($request->marca))->first();
+        if (empty($buscar_marca)){
+            $marca=new Marca();
+            $marca->marca=$request->marca;
+            $marca->save();
+            $marca=$marca->id;
+
+        }
+        else{
+            $marca=$buscar_marca->id;
+        }
         $vehiculo=new Vehiculo;//modelo
         $vehiculo->placa=$request->placa;
         $vehiculo->modelo=$request->modelo;
         $vehiculo->color=$request->color;
-        $vehiculo->marcas_id=$request->marca;
+        $vehiculo->marcas_id=$marca;
         $vehiculo->lineas_id=$request->linea;
         $vehiculo->tipo_vehiculos_id=$request->tipovehiculo;
         $vehiculo->save();

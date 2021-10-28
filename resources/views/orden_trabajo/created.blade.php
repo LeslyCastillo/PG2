@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1>Ordenes de Trabajo</h1>
+    <h1 class="text-center">ORDENES DE TRABAJO</h1>
 
     <form action="{{route("orden_trabajo.store")}}" method="post">
         @csrf
@@ -22,12 +22,14 @@
 
                 <div class="form-group col-md-4">
                     <label>Marca</label>
-                    <select required name="marca" class="form-control" aria-label="Default select example">
-                        <option value="" hidden>Selecciona una marca</option>
-                        @foreach($marcas as $marca)
-                            <option value="{{$marca->id}}">{{$marca->marca}}</option>
-                        @endforeach
-                    </select>
+{{--                    <select  required name="marca" class="form-control" aria-label="Default select example">--}}
+{{--                        <option value="" hidden>Selecciona una marca</option>--}}
+{{--                        @foreach($marcas as $marca)--}}
+{{--                            <option value="{{$marca->id}}">{{$marca->marca}}</option>--}}
+{{--                        @endforeach--}}
+{{--                    </select>--}}
+                    <input autocomplete="off" type="text" maxlength="25" required class="form-control text-uppercase" name="marca" id="marca">
+
                 </div>
                 <br>
                 <br>
@@ -66,5 +68,33 @@
             <button type="submit" class="btn btn-primary">Registrar</button>
         </div>
     </form>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var marca = $('#marca');
+
+        marca.autocomplete({
+                source: function (request, response) {
+                    var query = marca.val();
+                    $.ajax({
+                        url: '{{route('marca.buscar')}}',
+                        method: 'POST',
+                        data: {query: query},
+                        success: function (data) {
+                            let resp = $.map(data, function (obj) {
+                                return obj.marca;
+                            });
+                            response(resp);
+                        }
+                    })
+                },
+                minLength: 2
+            }
+        );
+    </script>
 
 @endsection

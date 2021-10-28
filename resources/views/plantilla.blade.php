@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Sistema </title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -25,6 +26,9 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -49,6 +53,23 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class=" nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Cerrar Sesión') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -62,7 +83,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #2b4866 !important;">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a  class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">La Agencia</span>
     </a>
@@ -70,14 +91,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">El Mecanico</a>
-        </div>
-      </div>
+{{--      <div class="user-panel mt-4 pb-4 mb-4 d-flex">--}}
+{{--        <div class="image">--}}
+{{--          <img  src="dist/img/logoAgencia.jpg"  alt="User Image">--}}
+{{--        </div>--}}
+{{--        <div class="info">--}}
+
+{{--        </div>--}}
+{{--      </div>--}}
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -167,6 +188,7 @@
                     </p>
                 </a>
             </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -209,9 +231,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+{{--<script src="plugins/jquery/jquery.min.js"></script>--}}
+{{--<!-- jQuery UI 1.11.4 -->--}}
+{{--<script src="plugins/jquery-ui/jquery-ui.min.js"></script>--}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

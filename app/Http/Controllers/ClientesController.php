@@ -27,5 +27,11 @@ class ClientesController extends Controller
         return redirect()->route('clientes.index');//name de la ruta
     }
 
+    //Eliminar Usuarios
+    public function delete($id){
+        Cliente::destroy($id);
+
+        return back()->with('clienteEliminado','Cliente Eliminado');
+    }
     //
 }
