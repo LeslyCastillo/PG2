@@ -11,8 +11,14 @@
 
         </div>
 
+        <div class="form-group">
+            <label>Precio:</label>
+            <input name="precio" type="text" class="form-control">
+
+        </div>
+
         <div  class=" d-flex mt-4 justify-content-center">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
         </div>
     </form>

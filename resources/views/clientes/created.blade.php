@@ -8,32 +8,36 @@
         </div>
     @endif
 
-    <form action="{{route("clientes.store")}}" method="post">
+    <form autocomplete="off" action="{{route("clientes.store")}}" method="post">
 
         @csrf
         <div class="form-row">
         <div class="form-group col-md-6">
-            <label>Nombre</label>
+            <label>Nombre:</label>
             <input name="nombre" type="text" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label>Nit</label>
+            <label>Nit:</label>
             <input name="nit" type="text" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label>Telefono</label>
-            <input name="telefono" type="text" class="form-control">
+            <label>Teléfono:</label>
+            <input name="telefono" type="tel" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label>Dirección</label>
+            <label>Dirección:</label>
             <input name="direccion" type="text" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label>Correo</label>
+            <label>Correo Electrónico:</label>
             <input name="correo" type="email" class="form-control">
         </div>
         </div>
+        <div  class=" d-flex mt-4 justify-content-center">
         <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
     </form>
+
+
 
 @endsection

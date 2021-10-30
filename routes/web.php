@@ -19,12 +19,22 @@ Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('ho
 Route::get('/servicios', [\App\Http\Controllers\ServiciosController::class, 'index'])->name('servicios.index');
 Route::get('/crear_servicios',[\App\Http\Controllers\ServiciosController::class, 'created'])->name("servicios.created");
 Route::post("/guardar_servicios", [\App\Http\Controllers\ServiciosController::class, 'store'])->name("servicios.store");
+route::delete("/delete/{id}",[\App\Http\Controllers\ServiciosController::class, 'delete'])->name('delete');
+Route::get("/servicios/{id}/edit",  [\App\Http\Controllers\ServiciosController::class, 'edit'])->name("servicios.edit");
+Route::post("/servicios/{id}/updated", [\App\Http\Controllers\ServiciosController::class, 'updated'])->name("servicios.updated");
+
+
 
 //Clientes
 Route::get("/clientes", [\App\Http\Controllers\ClientesController::class, 'index'])->name("clientes.index");
 Route::get('/crear_clientes',[\App\Http\Controllers\ClientesController::class, 'created'])->name("clientes.created");
 Route::post("/guardar_clientes", [\App\Http\Controllers\ClientesController::class, 'store'])->name("clientes.store");
 route::delete("/delete/{id}",[\App\Http\Controllers\ClientesController::class, 'delete'])->name('delete');
+Route::post("/buscar_clientes", [\App\Http\Controllers\ClientesController::class, 'find'])->name("cliente.buscar");
+Route::get("/clientes/{id}/edit",  [\App\Http\Controllers\ClientesController::class, 'edit'])->name("clientes.edit");
+Route::post("/clientes/{id}/updated", [\App\Http\Controllers\ClientesController::class, 'updated'])->name("clientes.updated");
+
+
 //vehiculos
 Route::get("/vehiculos", [\App\Http\Controllers\VehiculosController::class, 'index'])->name("vehiculos.index");
 Route::get('/crear_vehiculos',[\App\Http\Controllers\VehiculosController::class, 'created'])->name("vehiculos.created");
@@ -33,6 +43,8 @@ Route::post("/guardar_vehiculos", [\App\Http\Controllers\VehiculosController::cl
 Route::get("/lineas", [\App\Http\Controllers\LineasController::class, 'index'])->name("lineas.index");
 Route::get('/crear_lineas',[\App\Http\Controllers\LineasController::class, 'created'])->name("lineas.created");
 Route::post("/guardar_lineas", [\App\Http\Controllers\LineasController::class, 'store'])->name("lineas.store");
+Route::post("/buscar_lineas", [\App\Http\Controllers\LineasController::class, 'find'])->name("linea.buscar");
+
 //marcas
 Route::get("/marcas", [\App\Http\Controllers\MarcasController::class, 'index'])->name("marcas.index");
 Route::get('/crear_marcas',[\App\Http\Controllers\MarcasController::class, 'created'])->name("marcas.created");

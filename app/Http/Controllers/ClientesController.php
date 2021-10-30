@@ -33,5 +33,25 @@ class ClientesController extends Controller
 
         return back()->with('clienteEliminado','Cliente Eliminado');
     }
+
+    public function find(){
+        return Cliente::all();
+    }
+    //editar
+    public function edit($id){
+        $cliente=Cliente::find($id);
+        return view("clientes.edit", compact("cliente"));
+    }
+
+    public function updated(Request $request, $id){
+        $cliente=Cliente::find($id);
+        $cliente->fill($request->all())->save();
+        return redirect()->route("clientes.index");
+    }
+
+//    public function inicio(){
+//        return view('index');
+//
+//    }
     //
 }

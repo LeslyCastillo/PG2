@@ -26,4 +26,8 @@ class LineasController extends Controller
         $linea->save();
         return redirect()->route('lineas.index');//name de la ruta
     }
+
+    public function find(){
+        return Linea::all();
+    }
 }

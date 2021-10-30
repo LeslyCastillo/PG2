@@ -1,9 +1,12 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1>Clientes</h1>
-    <a class="btn btn-primary" href="{{route('clientes.created')}}">
-        <i class="fas fa-plus-circle"></i> Nuevo Cliente</a>
+    <h1 class="text-center">CLIENTES</h1>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success" href="{{route('clientes.created')}}">
+            <i class="fas fa-plus-circle"></i> Nuevo Cliente</a>
+    </div>
+    <br>
 
     <table class="table">
         <thead>
@@ -11,9 +14,9 @@
             <th scope="col">No.</th>
             <th scope="col">Nombre</th>
             <th scope="col">Nit</th>
-            <th scope="col">Telefono</th>
+            <th scope="col">Teléfono</th>
             <th scope="col">Dirección</th>
-            <th scope="col">Correo</th>
+            <th scope="col">Correo Electrónico</th>
             <th scope="col">Acciones</th>
 
         </tr>
@@ -29,10 +32,14 @@
                 <td>{{$cliente->correo}}</td>
                <td> <form action="{{route('delete', $cliente->id)}}" method="post">
                     @csrf @method('DELETE')
-                    <button type="submit" onclick="return confirm('¿Seguro de borrar usuario?');" class="btn btn-danger">
+                    <button title="ELIMINAR REGISTRO" type="submit" onclick="return confirm('¿Seguro de borrar datos?');" class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i>
                     </button>
-                </form></td>
+                       <a title="EDITAR DATOS" class="btn btn-primary btn-sm" href="{{route("clientes.edit", $cliente->id)}}"><i class="fas fa-edit"></i>
+                       </a>
+                </form>
+
+               </td>
             </tr>
         @endforeach
         </tbody>

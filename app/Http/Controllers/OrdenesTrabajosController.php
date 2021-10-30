@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Linea;
 use App\Models\Marca;
 use App\Models\OrdenTrabajo;
+use App\Models\Servicio;
 use App\Models\TipoVehiculo;
 use App\Models\Vehiculo;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,8 @@ class OrdenesTrabajosController extends Controller
         $marcas=Marca::all();
         $lineas=Linea::all();
         $tipo_vehiculo=TipoVehiculo::all();
-        return view('orden_trabajo.created', compact("marcas", "lineas", "tipo_vehiculo"));
+        $servicios=Servicio::all();
+        return view('orden_trabajo.created', compact("marcas", "lineas", "tipo_vehiculo", "servicios"));
     }
 
     public function store(Request $request){
