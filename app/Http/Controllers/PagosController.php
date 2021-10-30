@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\TipoPago;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -13,7 +14,8 @@ class PagosController extends Controller
     }
 
     public function created(){
-        return view('pagos.created');
+        $tipo_pago=TipoPago::all();
+        return view('pagos.created', compact("tipo_pago"));
     }
 
     public function store(Request $request){

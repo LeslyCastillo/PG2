@@ -30,11 +30,12 @@
                 <td>{{$cliente->telefono}}</td>
                 <td>{{$cliente->direccion}}</td>
                 <td>{{$cliente->correo}}</td>
-               <td> <form action="{{route('delete', $cliente->id)}}" method="post">
-                    @csrf @method('DELETE')
-                    <button title="ELIMINAR REGISTRO" type="submit" onclick="return confirm('¿Seguro de borrar datos?');" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+                <td>
+{{--               <td> <form action="{{route('delete', $cliente->id)}}" method="post">--}}
+{{--                    @csrf @method('DELETE')--}}
+{{--                    <button title="ELIMINAR REGISTRO" type="submit" onclick="return confirm('¿Seguro de borrar datos?');" class="btn btn-danger btn-sm">--}}
+{{--                        <i class="fas fa-trash-alt"></i>--}}
+{{--                    </button>--}}
                        <a title="EDITAR DATOS" class="btn btn-primary btn-sm" href="{{route("clientes.edit", $cliente->id)}}"><i class="fas fa-edit"></i>
                        </a>
                 </form>

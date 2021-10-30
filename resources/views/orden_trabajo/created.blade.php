@@ -124,7 +124,7 @@
                     <input type="text" class="form-control" id="precio" placeholder="Precio servicio">
                 </div>
             </div>
-            <div class="col-md-4 col-4 form-group">
+            <div class="col-md-2 col-4 form-group">
                 <button  id="btn-agregarServicio" class="btn btn-primary"> Agregar Servicio</button>
             </div>
         </div>
@@ -134,13 +134,16 @@
         <tr class="text-center">
             <th>No.</th>
             <th>Descripción del Servicio</th>
+            <th>Observaciones</th>
             <th>Precio</th>
         </tr>
         </thead>
     </table>
+    <form id="registrar_ot">
     <div  class=" d-flex mt-4 justify-content-center">
         <button type="submit" class="btn btn-primary">Registrar</button>
     </div>
+    </form>
     <script>
         $.ajaxSetup({
             headers: {
@@ -238,11 +241,13 @@
         function agregarC(){
             var codigo=$("#servicio option:selected").val();
             var servicio = $("#servicio option:selected").text(); //ISO
-            var precio = $("#precio").val(); //Codigo BD
+            var precio = $("#precio").val();
+            var observaciones = $("#observaciones").val();//Codigo BD
             var i = $('.table tr').length - 1;
             var fila='<tr class="fila">'+
                 '<td for="id_content" ><input class="form-control codigo_con" type="text" name="codigo['+i+'][numero_contenedor]" value="'+codigo+'" readonly></td>'+
                 '<td><input class="form-control" type="text" value="'+servicio+'" readonly></td>'+
+                '<td><input class="form-control" type="text" value="'+observaciones+'" name="observaciones" readonly></td>'+
                 '<td><input class="form-control" type="text" value="'+precio+'" readonly></td>'+
                 '</tr>';
             $('.table').append(fila);
