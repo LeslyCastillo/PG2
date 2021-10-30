@@ -49,7 +49,7 @@
                 <div class="form-group col-md-3">
 
                     <div>
-                        <label STYLE="margin-right: 155px;" >Tipo de vehiculo:</label>
+                        <label STYLE="margin-right: 145px;" >Tipo de vehiculo:</label>
                         <a title="NUEVO TIPO" href="{{route("tipos_vehiculos.created")}}" >
                             <i  class="fas fa-plus-circle "></i>
                             </a>
