@@ -4,7 +4,7 @@
     <h1 class="text-center">REGISTRAR ORDEN DE TRABAJO</h1>
 
 
-    <form autocomplete="off" action="{{route("orden_trabajo.store")}}" method="post">
+    <form id="form_general" autocomplete="off" action="{{route("orden_trabajo.store")}}" method="post">
         @csrf
 
             <div class="form-row">
@@ -129,6 +129,7 @@
             </div>
         </div>
     </form>
+    <form id="form_servicios">
     <table class="table table-bordered">
         <thead>
         <tr class="text-center">
@@ -139,9 +140,10 @@
         </tr>
         </thead>
     </table>
+    </form>
     <form id="registrar_ot">
     <div  class=" d-flex mt-4 justify-content-center">
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="#" onclick="ingresar_orden()" class="btn btn-primary">Registrar</a>
     </div>
     </form>
     <script>
@@ -150,6 +152,24 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+
+        function ingresar_orden(){
+           var form1=$('#form_servicios').serialize()
+          var form2=$('#form_general').serialize()
+            const searchParams = new URLSearchParams(form1);
+            form1 = Object.fromEntries(searchParams);
+            const searchParamss = new URLSearchParams(form2);
+            form2= Object.fromEntries(searchParamss);
+            $.ajax({
+                url: '{{route('orden_trabajo.store')}}',
+                method: 'POST',
+                data: {info: form2,servicios:form1},
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        }
         var marca = $('#marca');
 
         marca.autocomplete({
@@ -245,10 +265,10 @@
             var observaciones = $("#observaciones").val();//Codigo BD
             var i = $('.table tr').length - 1;
             var fila='<tr class="fila">'+
-                '<td for="id_content" ><input class="form-control codigo_con" type="text" name="codigo['+i+'][numero_contenedor]" value="'+codigo+'" readonly></td>'+
-                '<td><input class="form-control" type="text" value="'+servicio+'" readonly></td>'+
+                '<td for="id_content" ><input class="form-control codigo_con" type="text" name="codigo['+i+']" value="'+codigo+'" readonly></td>'+
+                '<td><input class="form-control" type="text" value="'+servicio+'" name="servicios" readonly></td>'+
                 '<td><input class="form-control" type="text" value="'+observaciones+'" name="observaciones" readonly></td>'+
-                '<td><input class="form-control" type="text" value="'+precio+'" readonly></td>'+
+                '<td><input class="form-control" type="text" name="precio" value="'+precio+'" readonly></td>'+
                 '</tr>';
             $('.table').append(fila);
             $('#id').val('');

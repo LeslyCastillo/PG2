@@ -29,6 +29,7 @@ class OrdenesTrabajosController extends Controller
     }
 
     public function store(Request $request){
+        dd($request->all());
         $buscar_marca=Marca::where('marca', strtoupper($request->marca))->first();
         if (empty($buscar_marca)){
             $marca=new Marca();
