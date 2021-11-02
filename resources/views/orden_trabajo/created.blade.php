@@ -1,9 +1,7 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1 class="text-center">REGISTRAR ORDEN DE TRABAJO</h1>
-
-
+    <h2 class="text-center">REGISTRAR ORDEN DE TRABAJO</h2>
     <form id="form_general" autocomplete="off" action="{{route("orden_trabajo.store")}}" method="post">
         @csrf
 
@@ -49,7 +47,7 @@
                 <div class="form-group col-md-3">
 
                     <div>
-                        <label STYLE="margin-right: 155px;" >Tipo de vehiculo:</label>
+                        <label >Tipo de vehiculo:</label>
                         <a title="NUEVO TIPO" href="{{route("tipos_vehiculos.created")}}" >
                             <i  class="fas fa-plus-circle "></i>
                             </a>
@@ -67,7 +65,7 @@
             <input  required name="fecha_recepcion" type="date" class="form-control">
             </div>
                 <br>
-                <h1 class=" form-group col-md-12 text-center">DATOS DEL CLIENTE</h1>
+                <h2 class=" form-group col-md-12 text-center">DATOS DEL CLIENTE</h2>
 
         <div class="form-group col-md-4">
             <label>Nombre Completo:</label>
@@ -93,7 +91,7 @@
 
             </div>
         <br>
-        <h1 class="text-center">SERVICIOS SOLICITADOS</h1>
+        <h2 class="text-center">SERVICIOS SOLICITADOS</h2>
 
 
 
