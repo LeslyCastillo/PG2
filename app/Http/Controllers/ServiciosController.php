@@ -13,6 +13,10 @@ class ServiciosController extends Controller
         return view('servicios.index', compact('servicios'));
     }
 
+    public function all(){
+        return Servicio::all();
+    }
+
     public function created(){
         return view('servicios.created');
     }

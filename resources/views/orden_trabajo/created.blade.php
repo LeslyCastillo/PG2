@@ -104,26 +104,24 @@
         <div class="form-row">
             <div class="form-group col-md-4 ">
 
-                <select id="servicio" required name="servicio" class="form-control" aria-label="Default select example">
+                <select v-model="addServicio.servicio" id="servicio" required name="servicio" class="form-control" aria-label="Default select example">
                     <option value="" hidden>Selecciona un servicio</option>
-                    @foreach($servicios as $item)
-                        <option value="{{$item->id}}">{{$item->servicio}}</option>
-                    @endforeach
+                    <option v-for="item in servicios" v-bind:value="{ id: item.id, servicio: item.servicio }">@{{ item.servicio }}</option>
                 </select>
             </div>
             <div class="col-md-4 col-4">
-                <input type="text" maxlength="250" id="observaciones" class="form-control" placeholder="Observaciones">
+                <input v-model="addServicio.observaciones" type="text" maxlength="250" id="observaciones" class="form-control" placeholder="Observaciones">
             </div>
             <div class="col-md-2 col-4">
                 <div  class=" input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">Q</div>
                     </div>
-                    <input type="text" class="form-control" id="precio" placeholder="Precio servicio">
+                    <input v-model="addServicio.precio" type="text" class="form-control" id="precio" placeholder="Precio servicio">
                 </div>
             </div>
             <div class="col-md-2 col-4 form-group">
-                <button  id="btn-agregarServicio" class="btn btn-primary"> Agregar Servicio</button>
+                <a v-on:click="agregarServicio" class="btn btn-primary"> Agregar Servicio</a>
             </div>
         </div>
     </form>
@@ -131,12 +129,18 @@
     <table class="table table-bordered">
         <thead>
         <tr class="text-center">
-            <th>No.</th>
-            <th>Descripción del Servicio</th>
+            <th>Servicio</th>
             <th>Observaciones</th>
             <th>Precio</th>
         </tr>
         </thead>
+        <tbody>
+        <tr v-for="item in servicios">
+            <td>@{{item.servicio.nombre}}</td>
+            <td>@{{item.observaciones}}</td>
+            <td>@{{item.precio}}</td>
+        </tr>
+        </tbody>
     </table>
     </form>
     <form id="registrar_ot">
@@ -256,29 +260,39 @@
     </script>
 
     <script>
-        function agregarC(){
-            var codigo=$("#servicio option:selected").val();
-            var servicio = $("#servicio option:selected").text(); //ISO
-            var precio = $("#precio").val();
-            var observaciones = $("#observaciones").val();//Codigo BD
-            var i = $('.table tr').length - 1;
-            var fila='<tr class="fila">'+
-                '<td for="id_content" ><input class="form-control codigo_con" type="text" name="codigo['+i+']" value="'+codigo+'" readonly></td>'+
-                '<td><input class="form-control" type="text" value="'+servicio+'" name="servicios" readonly></td>'+
-                '<td><input class="form-control" type="text" value="'+observaciones+'" name="observaciones" readonly></td>'+
-                '<td><input class="form-control" type="text" name="precio" value="'+precio+'" readonly></td>'+
-                '</tr>';
-            $('.table').append(fila);
-            $('#id').val('');
-            $("#servicios-select").prop('selectedIndex',0);
-            $('#precio').val('');
-        }
-
-        $('#ingreso').submit(function(e){
-            e.preventDefault();
-            agregarC();
-        });
-
+        var app = new Vue({
+            el: '#app',
+            created(){
+                this.getServicios()
+            },
+            data: {
+                servicios: [],
+                serviciosAgregados: [],
+                addServicio:{
+                    servicio: [],
+                    observaciones: '',
+                    precio: ''
+                }
+            },
+            methods: {
+                getServicios: function(){
+                  axios
+                    .get('/api/servicios')
+                    .then(response =>{
+                        this.servicios = response
+                    })
+                },
+                agregarServicio: function(){
+                    if(this.addServicio.servicio == '' || this.addServicio.precio == ''){
+                        toastr.error('No se rellenaron los campos.')
+                    }else{
+                        this.servicios.push(this.addServicio)
+                        console.log(this.addServicio.servicio)
+                        toastr.success('Se añadio el servicio!')
+                    }
+                }
+            }
+        })
     </script>
 
 @endsection
