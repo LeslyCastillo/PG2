@@ -11,12 +11,14 @@
         <thead>
         <tr>
             <th scope="col">No.</th>
+            <th scope="col">Nit</th>
+            <th scope="col">Cliente</th>
             <th scope="col">Placa</th>
             <th scope="col">Modelo</th>
             <th scope="col">color</th>
             <th scope="col">Línea</th>
             <th scope="col">Marca</th>
-            <th scope="col">Tipo de Vehiculo</th>
+            <th scope="col" class="text-center">Tipo de Vehiculo</th>
             <TH scope="col" class="text-center">Orden de Trabajo</TH>
 
         </tr>
@@ -24,13 +26,15 @@
         <tbody>
         @foreach($vehiculos as $vehiculo)
             <tr>
-                <th scope="row">{{$vehiculo->id}}</th>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$vehiculo->nit}}</td>
+                <td>{{$vehiculo->nombre}}</td>
                 <td>{{$vehiculo->placa}}</td>
                 <td>{{$vehiculo->modelo}}</td>
                 <td>{{$vehiculo->color}}</td>
                 <td>{{$vehiculo->linea}}</td>
                 <td>{{$vehiculo->marca}}</td>
-                <td>{{$vehiculo->descripcion}}</td>
+                <td class="text-center">{{$vehiculo->descripcion}}</td>
                 <td class="text-center"> <form>
 {{--                        @csrf @method('DELETE')--}}
                         <a href="{{route('orden_trabajo.index')}}" class="btn btn-outline-info btn-sm ">

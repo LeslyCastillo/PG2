@@ -18,25 +18,25 @@
             <th scope="col">Nombre del Cliente</th>
             <th scope="col">Placa</th>
             <th scope="col">Total</th>
-            <th scope="col">Estado</th>
+            <th scope="col"  class="text-center">Estado</th>
             <th scope="col" class="text-center">Vista Previa</th>
         </tr>
         </thead>
         <tbody>
         @foreach($OrdenesTrabajos as $OrdenTrabajo)
             <tr>
-                <th scope="row">{{$OrdenTrabajo->id}}</th>
+                <th scope="row">{{$loop->iteration}}</th>
                 <td>{{date_format(date_create($OrdenTrabajo->fecha_recepcion), 'd-m-Y')}}</td>
                 <td>{{$OrdenTrabajo->nit}}</td>
                 <td>{{$OrdenTrabajo->nombre}}</td>
                 <td>{{$OrdenTrabajo->placa}}</td>
                 <td>Q {{number_format($OrdenTrabajo->total,2)}}</td>
-                <td>@if($OrdenTrabajo->estatus == 1)
+                <td  class="text-center">@if($OrdenTrabajo->estatus == 1)
                         <button v-on:click="cambiarEstatus({{$OrdenTrabajo->id}})" class="btn btn-sm btn-primary">
                             CREADA
                         </button>
                     @elseif($OrdenTrabajo->estatus == 2)
-                        <button v-on:click="cambiarEstatus({{$OrdenTrabajo->id}})" class="btn btn-sm btn-secondary">EN
+                        <button v-on:click="cambiarEstatus({{$OrdenTrabajo->id}})" class="btn btn-sm text-white" style="background:#E78C10">EN
                             PROCESO
                         </button>
                     @elseif($OrdenTrabajo->estatus == 3)
@@ -48,7 +48,7 @@
                                 class="btn btn-sm btn-warning text-white">PENDIENTE PAGO
                         </button>
                     @else
-                        <button class="btn btn-sm btn-success">PAGADA</button>
+                        <button class="btn btn-sm btn-secondary">PAGADA</button>
                     @endif
                 </td>
                 <td class="text-center">
