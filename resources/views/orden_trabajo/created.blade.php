@@ -1,6 +1,7 @@
 @extends('plantilla')
 
 @section('contenido')
+
     <h2 class="text-center">REGISTRAR ORDEN DE TRABAJO</h2>
     <form id="form_general" autocomplete="off" action="{{route("orden_trabajo.store")}}" method="post">
         @csrf
@@ -67,25 +68,26 @@
             <br>
             <h2 class=" form-group col-md-12 text-center">DATOS DEL CLIENTE</h2>
 
-            <div class="form-group col-md-4">
-                <label>Nombre Completo:</label>
-                <input id="cliente" v-model="cliente.nombre" required name="nombre" type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-2 col-sm-6">
                 <label>Nit:</label>
                 <input id="nit" v-model="cliente.nit" required name="nit" type="text" class="form-control">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3 col-sm-6">
+                <label>Nombre Completo:</label>
+                <input id="cliente" v-model="cliente.nombre" required name="nombre" type="text" class="form-control">
+            </div>
+
+            <div class="form-group col-md-3 col-sm-6">
                 <label>Dirección:</label>
                 <input id="direccion" v-model="cliente.direccion" required name="direccion" type="text" class="form-control">
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-2 col-sm-6">
                 <label>Teléfono:</label>
-                <input id="telefono" required v-model="cliente.telefono" name="telefono" type="tel" class="form-control">
+                <input id="telefono" type="number" maxlength="8" required v-model="cliente.telefono" name="telefono" class="form-control">
             </div>
-            <div class="form-group col-md-6">
-                <label>Correo Electrónico:</label>
+            <div class="form-group col-md-2 col-sm-6">
+                <label>Correo:</label>
                 <input id="correo" name="correo" v-model="cliente.correo" type="email" class="form-control">
             </div>
 
@@ -148,7 +150,7 @@
     </form>
     <form id="registrar_ot">
         <div class=" d-flex mt-4 justify-content-center">
-            <a href="#" v-on:click="guardarOrden" class="btn btn-primary">Registrar</a>
+            <button id="btnRegistrarOrden" v-on:click="guardarOrden" class="btn btn-primary">Registrar</button>
         </div>
     </form>
     <script>
@@ -202,7 +204,7 @@
     </script>
 
     <script>
-        var app = new Vue({
+        new Vue({
             el: '#app',
             created() {
                 this.getServicios()
@@ -249,6 +251,8 @@
                         })
                 },
                 guardarOrden: function(){
+
+                    document.getElementById("btnRegistrarOrden").disabled = true;
                     axios
                         .post('/guardar_ordenestrabajos', {
                             servicios: this.serviciosAgregados, cliente: this.cliente, vehiculo: this.vehiculo
@@ -278,6 +282,22 @@
         .btn-blanco{
             background-color: #ffffff !important;
             border-color: #797e87 !important;
+        }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
     </style>
 @endsection

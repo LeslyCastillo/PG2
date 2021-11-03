@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\DetalleOrdenes;
+use App\Models\Helper;
 use App\Models\Linea;
 use App\Models\Marca;
 use App\Models\OrdenTrabajo;
@@ -82,6 +83,7 @@ class OrdenesTrabajosController extends Controller
             $orden_trabajo->fecha_recepcion=$request->vehiculo['fechaRecepcion'];
             $orden_trabajo->vehiculos_id=$vehiculo->id;
             $orden_trabajo->clientes_id=$cliente->id;
+            $orden_trabajo->estatus=Helper::$ORDEN_CREADA;
             $orden_trabajo->users_id=Auth::user()->id;
             $orden_trabajo->save();
 
