@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('contenido')
-<body >
+<body>
 <br>
 <br>
 <br>

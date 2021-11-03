@@ -49,7 +49,11 @@ class OrdenesTrabajosController extends Controller
         $servicios=Servicio::all();
         return view('orden_trabajo.created', compact("marcas", "lineas", "tipo_vehiculo", "servicios"));
     }
-
+    public function estado(Request $request){
+        $orden = OrdenTrabajo::find($request->id);
+        $orden->estatus = $request->estado;
+        $orden->save();
+    }
     public function store(Request $request){
 
         try{

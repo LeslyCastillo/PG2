@@ -54,6 +54,8 @@ Route::post("/buscar_marcas", [\App\Http\Controllers\MarcasController::class, 'f
 Route::get("/ordenestrabajos",[\App\Http\Controllers\OrdenesTrabajosController::class, 'index'])->name("orden_trabajo.index");
 Route::get('/crear_ordenestrabajos',[\App\Http\Controllers\OrdenesTrabajosController::class, 'created'])->name("orden_trabajo.created");
 Route::post("/guardar_ordenestrabajos", [\App\Http\Controllers\OrdenesTrabajosController::class, 'store'])->name("orden_trabajo.store");
+
+Route::post("/cambiar_estado", [\App\Http\Controllers\OrdenesTrabajosController::class, 'estado'])->name("orden_trabajo.estado");
 //Pagos
 Route::get("/pagos", [\App\Http\Controllers\PagosController::class, 'index'])->name("pagos.index");
 Route::get('/crear_pagos',[\App\Http\Controllers\PagosController::class, 'created'])->name("pagos.created");
