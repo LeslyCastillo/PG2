@@ -3,7 +3,7 @@
 @section('contenido')
     <h1 class="text-center">SERVICIOS </h1>
 
-    <form action="{{route("servicios.store")}}" method="post">
+    <form autocomplete="off" action="{{route("servicios.store")}}" method="post">
         @csrf
         <div class="form-group">
             <label>Descripción del Servicio:</label>

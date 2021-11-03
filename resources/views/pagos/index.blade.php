@@ -2,41 +2,50 @@
 
 @section('contenido')
     <h1 class="text-center">PAGOS</h1>
-    <div  class="d-flex justify-content-end">
-        <a class="btn btn-success" href="{{route('pagos.created')}}">
-            <i class="fas fa-plus-circle"></i>
-            Nuevo Pago</a>
-    </div>
+{{--    <div  class="d-flex justify-content-end">--}}
+{{--        <a class="btn btn-success" href="{{route('pagos.created')}}">--}}
+{{--            <i class="fas fa-plus-circle"></i>--}}
+{{--            Nuevo Pago</a>--}}
+{{--    </div>--}}
 
         <br>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">No.</th>
-            <th scope="col">Fecha</th>
+            <th scope="col">Fecha de pago</th>
             <th scope="col">Nit</th>
-            <th scope="col">CLiente</th>
-            <th scope="col">Orden de Trabajo</th>
+            <th scope="col">Cliente</th>
+            <th scope="col" class="text-center">Orden de Trabajo</th>
             <th scope="col">Total</th>
-            <th scope="col">Forma de Pago</th>
+            <th scope="col" class="text-center">Forma de Pago</th>
+            <th scope="col" class="text-center">Comprobante</th>
         </tr>
         </thead>
         <tbody>
         @foreach($pagos as $pago)
             <tr>
-                <th scope="row">{{$pago->id}}</th>
+                <th scope="row">{{$loop->iteration}}</th>
                 <td>{{date_format(date_create($pago->fecha), 'd-m-Y H:i')}}</td>
                 <td>{{$pago->nit}}</td>
                 <td>{{$pago->nombre}}</td>
-                <td>#{{$pago->orden_de_trabajo_id}}</td>
+                <td class="text-center">#{{$pago->orden_de_trabajo_id}}</td>
                 <td>Q{{number_format($pago->total,2)}}</td>
-                <td>
+                <td class="text-center">
                     @if($pago->tipo_de_pago==1)
                         Efectivo
                     @else
                     Cheque
 
                         @endif
+                </td>
+                <td class="text-center"> <form>
+                        {{--                        @csrf @method('DELETE')--}}
+                        <a href="{{route('orden_trabajo.index')}}" class="btn btn-outline-info btn-sm ">
+                            <i class=" far fa-eye"> </i>
+                            VER</a>
+                    </form>
+
                 </td>
             </tr>
         @endforeach

@@ -24,13 +24,13 @@
         <tbody>
         @foreach($clientes as $cliente)
             <tr>
-                <th scope="row">{{$cliente->id}}</th>
+                <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$cliente->nombre}}</td>
                 <td>{{$cliente->nit}}</td>
                 <td>{{$cliente->telefono}}</td>
                 <td>{{$cliente->direccion}}</td>
                 <td>{{$cliente->correo}}</td>
-                <td>
+                <td  class="text-center">
 {{--               <td> <form action="{{route('delete', $cliente->id)}}" method="post">--}}
 {{--                    @csrf @method('DELETE')--}}
 {{--                    <button title="ELIMINAR REGISTRO" type="submit" onclick="return confirm('¿Seguro de borrar datos?');" class="btn btn-danger btn-sm">--}}

@@ -21,7 +21,13 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label>Marca:</label>
+                <div>
+                    <label>Marca:</label>
+                    <a title="NUEVA MARCA" href="{{route("marcas.created")}}">
+                        <i class="fas fa-plus-circle "></i>
+                    </a>
+                </div>
+
                 <select  v-model="vehiculo.marca" required name="marca" class="selectpicker"
                         data-none-Results-Text="No se encontro la marca"
                         data-none-Selected-Text="Escoja una marca" data-live-search="true">
@@ -33,7 +39,12 @@
             </div>
 
             <div class="form-group col-md-3">
+                <div>
                 <label>Línea: &nbsp; &nbsp;</label>
+                    <a title="NUEVA LÍNEA" href="{{route("lineas.created")}}">
+                        <i class="fas fa-plus-circle "></i>
+                    </a>
+                </div>
                 <select v-model="vehiculo.linea" class="selectpicker" required name="linea"
                         data-none-Results-Text="No se encontro la linea"
                         data-none-Selected-Text="Escoja una linea" data-live-search="true">
@@ -100,7 +111,7 @@
         {{--            <button type="submit" class="btn btn-primary">Registrar</button>--}}
         {{--        </div>--}}
     </form>
-    <form action="POST" id="ingreso">
+    <form autocomplete="off" action="POST" id="ingreso">
         <div class="form-row">
             <div class="form-group col-md-4 ">
 
@@ -122,7 +133,7 @@
                         <div class="input-group-text">Q</div>
                     </div>
                     <input v-model="addServicio.precio" type="text" class="form-control" id="precio"
-                           placeholder="Precio servicio">
+                           placeholder="Precio">
                 </div>
             </div>
             <div class="col-md-2 col-4 form-group">
