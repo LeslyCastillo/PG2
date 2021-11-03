@@ -24,8 +24,9 @@ class OrdenesTrabajosController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
         $OrdenesTrabajos = OrdenTrabajo::join('vehiculos', 'vehiculos.id', '=', 'orden_de_trabajo.vehiculos_id')
             ->join('clientes', 'clientes.id', '=', 'orden_de_trabajo.clientes_id')
             ->select('orden_de_trabajo.fecha_recepcion', 'clientes.nombre', 'clientes.nit',

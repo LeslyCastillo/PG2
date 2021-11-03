@@ -72,6 +72,7 @@ Route::get('/crear_tipospagos',[\App\Http\Controllers\TiposPagosController::clas
 Route::post("/guardar_tipospagos", [\App\Http\Controllers\TiposPagosController::class, 'store'])->name("tipos_pagos.store");
 
 
+Route::get("/orden_trabajo/{id}",[\App\Http\Controllers\PdfController::class,'streamPDF'])->name("orden.pdf");
 
 
 Auth::routes();
