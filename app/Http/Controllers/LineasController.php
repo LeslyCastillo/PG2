@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class LineasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $lineas=Linea::join('marcas','marcas.id','=','lineas.marcas_id')
         ->select('marcas.marca','lineas.id', 'lineas.linea')->get();
