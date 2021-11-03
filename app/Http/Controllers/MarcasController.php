@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class MarcasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $marcas=Marca::all();
         return view("marcas.index", compact("marcas"));

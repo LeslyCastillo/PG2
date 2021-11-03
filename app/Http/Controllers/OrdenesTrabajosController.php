@@ -19,16 +19,22 @@ use Throwable;
 
 class OrdenesTrabajosController extends Controller
 {
-    public function index(){
-        $OrdenesTrabajos=OrdenTrabajo::join('vehiculos', 'vehiculos.id', '=', 'orden_de_trabajo.vehiculos_id')
-        ->join('clientes', 'clientes.id', '=','orden_de_trabajo.clientes_id')
-        ->select('orden_de_trabajo.fecha_recepcion', 'clientes.nombre', 'clientes.nit',
-            'vehiculos.placa',
-            'orden_de_trabajo.estatus',
-            'orden_de_trabajo.id'
-        )->get();
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-        $ordenesTrabajosTotal = $OrdenesTrabajos->map(function($orden){
+    public function index()
+    {
+        $OrdenesTrabajos = OrdenTrabajo::join('vehiculos', 'vehiculos.id', '=', 'orden_de_trabajo.vehiculos_id')
+            ->join('clientes', 'clientes.id', '=', 'orden_de_trabajo.clientes_id')
+            ->select('orden_de_trabajo.fecha_recepcion', 'clientes.nombre', 'clientes.nit',
+                'vehiculos.placa',
+                'orden_de_trabajo.estatus',
+                'orden_de_trabajo.id'
+            )->get();
+
+        $ordenesTrabajosTotal = $OrdenesTrabajos->map(function ($orden) {
 
             $detalle = DetalleOrdenes::where('orden_de_trabajo_id', $orden->id)->sum('total');
 
@@ -42,35 +48,40 @@ class OrdenesTrabajosController extends Controller
         return view("orden_trabajo.index", compact("OrdenesTrabajos"));
     }
 
-    public function created(){
-        $marcas=Marca::all();
-        $lineas=Linea::all();
-        $tipo_vehiculo=TipoVehiculo::all();
-        $servicios=Servicio::all();
+    public function created()
+    {
+        $marcas = Marca::all();
+        $lineas = Linea::all();
+        $tipo_vehiculo = TipoVehiculo::all();
+        $servicios = Servicio::all();
         return view('orden_trabajo.created', compact("marcas", "lineas", "tipo_vehiculo", "servicios"));
     }
-    public function estado(Request $request){
+
+    public function estado(Request $request)
+    {
         $orden = OrdenTrabajo::find($request->id);
         $orden->estatus = $request->estado;
         $orden->save();
     }
-    public function store(Request $request){
 
-        try{
+    public function store(Request $request)
+    {
+
+        try {
             $vehiculo = new Vehiculo; //Modelo
-            $vehiculo->placa=strtoupper($request->vehiculo['placa']);
-            $vehiculo->modelo=$request->vehiculo['modelo'];
-            $vehiculo->color=$request->vehiculo['color'];
-            $vehiculo->marcas_id=$request->vehiculo['marca'];
-            $vehiculo->lineas_id=$request->vehiculo['linea'];
-            $vehiculo->tipo_vehiculos_id=$request->vehiculo['tipoVehiculo'];
+            $vehiculo->placa = strtoupper($request->vehiculo['placa']);
+            $vehiculo->modelo = $request->vehiculo['modelo'];
+            $vehiculo->color = $request->vehiculo['color'];
+            $vehiculo->marcas_id = $request->vehiculo['marca'];
+            $vehiculo->lineas_id = $request->vehiculo['linea'];
+            $vehiculo->tipo_vehiculos_id = $request->vehiculo['tipoVehiculo'];
             $vehiculo->save();
 
             //Buscamos cliente mediante nit
             $cliente = Cliente::where('nit', $request->cliente['nit'])->first();
 
             //Comprobamos si no existe se ejecuta el if para registrarlo
-            if(empty($cliente)){
+            if (empty($cliente)) {
                 $nuevo_cliente = new Cliente;
                 $nuevo_cliente->nombre = strtoupper($request->cliente['nombre']);
                 $nuevo_cliente->nit = $request->cliente['nit'];
@@ -84,14 +95,14 @@ class OrdenesTrabajosController extends Controller
             }
 
             $orden_trabajo = new OrdenTrabajo; //Modelo
-            $orden_trabajo->fecha_recepcion=$request->vehiculo['fechaRecepcion'];
-            $orden_trabajo->vehiculos_id=$vehiculo->id;
-            $orden_trabajo->clientes_id=$cliente->id;
-            $orden_trabajo->estatus=Helper::$ORDEN_CREADA;
-            $orden_trabajo->users_id=Auth::user()->id;
+            $orden_trabajo->fecha_recepcion = $request->vehiculo['fechaRecepcion'];
+            $orden_trabajo->vehiculos_id = $vehiculo->id;
+            $orden_trabajo->clientes_id = $cliente->id;
+            $orden_trabajo->estatus = Helper::$ORDEN_CREADA;
+            $orden_trabajo->users_id = Auth::user()->id;
             $orden_trabajo->save();
 
-            foreach ($request->servicios as $servicio){
+            foreach ($request->servicios as $servicio) {
                 $detalleOrden = new DetalleOrdenes;
                 $detalleOrden->orden_de_trabajo_id = $orden_trabajo->id;
                 $detalleOrden->servicios_id = $servicio['servicio']['id'];
@@ -102,7 +113,7 @@ class OrdenesTrabajosController extends Controller
 
 
             return redirect()->route('orden_trabajo.index');//name de la ruta
-        }catch (Throwable $t){
+        } catch (Throwable $t) {
             return response()->json('Ocurrio un error', 500);
         }
     }
