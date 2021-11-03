@@ -50,7 +50,7 @@
                         <i class="fas fa-plus-circle "></i>
                     </a>
                 </div>
-                <select name="tipovehiculo" v-model="vehiculo.linea" class="selectpicker" required
+                <select name="tipovehiculo" v-model="vehiculo.tipoVehiculo" class="selectpicker" required
                         data-none-Results-Text="No se encontro el tipo de vehiculo"
                         data-none-Selected-Text="Escoja una tipo de vehiculo" data-live-search="true">
                     <option value="" hidden>Selecciona un tipo</option>
@@ -62,31 +62,31 @@
 
             <div class="form-group col-md-3">
                 <label>Fecha Recepción:</label>
-                <input required name="fecha_recepcion" type="date" class="form-control">
+                <input required name="fecha_recepcion" v-model="vehiculo.fechaRecepcion" type="date" class="form-control">
             </div>
             <br>
             <h2 class=" form-group col-md-12 text-center">DATOS DEL CLIENTE</h2>
 
             <div class="form-group col-md-4">
                 <label>Nombre Completo:</label>
-                <input id="cliente" required name="nombre" type="text" class="form-control">
+                <input id="cliente" v-model="cliente.nombre" required name="nombre" type="text" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <label>Nit:</label>
-                <input id="nit" required name="nit" type="text" class="form-control">
+                <input id="nit" v-model="cliente.nit" required name="nit" type="text" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <label>Dirección:</label>
-                <input id="direccion" required name="direccion" type="text" class="form-control">
+                <input id="direccion" v-model="cliente.direccion" required name="direccion" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-6">
                 <label>Teléfono:</label>
-                <input id="telefono" required name="telefono" type="tel" class="form-control">
+                <input id="telefono" required v-model="cliente.telefono" name="telefono" type="tel" class="form-control">
             </div>
             <div class="form-group col-md-6">
                 <label>Correo Electrónico:</label>
-                <input id="correo" name="correo" type="email" class="form-control">
+                <input id="correo" name="correo" v-model="cliente.correo" type="email" class="form-control">
             </div>
 
         </div>
@@ -135,7 +135,6 @@
                 <th>Servicio</th>
                 <th>Observaciones</th>
                 <th>Precio</th>
-                fdsafsd
             </tr>
             </thead>
             <tbody>
@@ -149,7 +148,7 @@
     </form>
     <form id="registrar_ot">
         <div class=" d-flex mt-4 justify-content-center">
-            <a href="#" onclick="ingresar_orden()" class="btn btn-primary">Registrar</a>
+            <a href="#" v-on:click="guardarOrden" class="btn btn-primary">Registrar</a>
         </div>
     </form>
     <script>
@@ -159,65 +158,6 @@
             }
         });
 
-
-        function ingresar_orden() {
-            var form1 = $('#form_servicios').serialize()
-            var form2 = $('#form_general').serialize()
-            const searchParams = new URLSearchParams(form1);
-            form1 = Object.fromEntries(searchParams);
-            const searchParamss = new URLSearchParams(form2);
-            form2 = Object.fromEntries(searchParamss);
-            $.ajax({
-                url: '{{route('orden_trabajo.store')}}',
-                method: 'POST',
-                data: {info: form2, servicios: form1},
-                success: function (data) {
-                    console.log(data)
-                }
-            })
-        }
-
-        var marca = $('#marca');
-
-        marca.autocomplete({
-                source: function (request, response) {
-                    var query = marca.val();
-                    $.ajax({
-                        url: '{{route('marca.buscar')}}',
-                        method: 'POST',
-                        data: {query: query},
-                        success: function (data) {
-                            let resp = $.map(data, function (obj) {
-                                return obj.marca;
-                            });
-                            response(resp);
-                        }
-                    })
-                },
-                minLength: 2
-            }
-        );
-
-        var linea = $('#linea');
-
-        linea.autocomplete({
-                source: function (request, response) {
-                    var query = linea.val();
-                    $.ajax({
-                        url: '{{route('linea.buscar')}}',
-                        method: 'POST',
-                        data: {query: query},
-                        success: function (data) {
-                            let resp = $.map(data, function (obj) {
-                                return obj.linea;
-                            });
-                            response(resp);
-                        }
-                    })
-                },
-                minLength: 2
-            }
-        );
 
         var cliente = $('#cliente');
 
@@ -230,8 +170,6 @@
                         data: {query: query},
                         success: function (data) {
                             let resp = $.map(data, function (obj, key) {
-
-
                                 return {
                                     label: obj.nombre,
                                     value: obj.id,
@@ -282,10 +220,18 @@
                     placa: '',
                     modelo: '',
                     color: '',
-                    marca: {},
-                    linea: {},
-                    tipoVehiculo: {},
+                    marca: '',
+                    linea: '',
+                    tipoVehiculo: '',
                     fechaRecepcion: ''
+                },
+
+                cliente: {
+                  nombre: '',
+                  nit: '',
+                  telefono: '',
+                  direccion: '',
+                  correo: ''
                 }
             },
             methods: {
@@ -294,6 +240,18 @@
                         .get('/api/servicios')
                         .then(response => {
                             this.servicios = response.data
+                        })
+                },
+                guardarOrden: function(){
+                    axios
+                        .post('/guardar_ordenestrabajos', {
+                            servicios: this.serviciosAgregados, cliente: this.cliente, vehiculo: this.vehiculo
+                        })
+                        .then(response => {
+                            toastr.success('Orden de trabajo registrada con exito.')
+                            setTimeout(function(){
+                                location.reload()
+                            },3000)
 
                         })
                 },
@@ -301,7 +259,6 @@
                     if (this.addServicio.servicio == '' || this.addServicio.precio == '') {
                         toastr.error('No se rellenaron los campos.')
                     } else {
-                        console.log(this.vehiculo)
                         this.serviciosAgregados.push(this.addServicio)
                         toastr.success('Se añadio el servicio!')
                     }
