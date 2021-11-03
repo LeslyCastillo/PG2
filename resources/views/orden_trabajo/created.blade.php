@@ -12,11 +12,11 @@
             </div>
             <div class="form-group col-md-4">
                 <label>Modelo:</label>
-                <input v-model="vehiculo.modelo" required name="modelo" type="text" class="form-control">
+                <input v-model="vehiculo.modelo" maxlength="4" required name="modelo" type="text" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <label>Color:</label>
-                <input v-model="vehiculo.color" required name="color" type="text" class="form-control">
+                <input v-model="vehiculo.color" maxlength="25" required name="color" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-3">
@@ -210,12 +210,18 @@
             data: {
                 servicios: [],
                 serviciosAgregados: [],
+
                 addServicio: {
                     servicio: [],
                     observaciones: '',
                     precio: ''
                 },
 
+                addServicioDefault: {
+                    servicio: [],
+                    observaciones: '',
+                    precio: ''
+                },
                 vehiculo: {
                     placa: '',
                     modelo: '',
@@ -259,7 +265,9 @@
                     if (this.addServicio.servicio == '' || this.addServicio.precio == '') {
                         toastr.error('No se rellenaron los campos.')
                     } else {
-                        this.serviciosAgregados.push(this.addServicio)
+                        let copyService = Object.assign({}, this.addServicio)
+                        this.serviciosAgregados.push(copyService)
+                        this.addServicio =  Object.assign({}, this.addServicioDefault)
                         toastr.success('Se añadio el servicio!')
                     }
                 }

@@ -9,7 +9,7 @@
          Nueva Orden de Trabajo</a>
     </div>
     <br>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">No.</th>
@@ -26,12 +26,15 @@
         @foreach($OrdenesTrabajos as $OrdenTrabajo)
             <tr>
                 <th scope="row">{{$OrdenTrabajo->id}}</th>
-                <td>{{$OrdenTrabajo->fecha_recepcion}}</td>
-                <td>{{$OrdenTrabajo->clientes_id}}</td>
-                <td>{{$OrdenTrabajo->vehiculos_id}}</td>
-                <td>{{$OrdenTrabajo->users_id}}</td>
-                <td>{{$OrdenTrabajo->users_id}}</td>
-                <td>{{$OrdenTrabajo->users_id}}</td>
+                <td>{{date_format(date_create($OrdenTrabajo->fecha_recepcion), 'd-m-Y')}}</td>
+                <td>{{$OrdenTrabajo->nit}}</td>
+                <td>{{$OrdenTrabajo->nombre}}</td>
+                <td>{{$OrdenTrabajo->placa}}</td>
+                <td>Q. {{number_format($OrdenTrabajo->total,2)}}</td>
+                <td>@if($OrdenTrabajo->estatus == 1)
+                        <h5><span class="badge badge-primary">Creada</span></h5>
+                        @endif
+                </td>
                 <td class="text-center"> <form>
                         {{--                        @csrf @method('DELETE')--}}
                         <a href="{{route('orden_trabajo.index')}}" class="btn btn-outline-info btn-sm ">

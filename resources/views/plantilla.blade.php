@@ -215,7 +215,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div id="app" class="container p-3 shadow-sm rounded">
+      <div id="app" class="container p-4 bg-white shadow-sm rounded">
           @yield('contenido')
       </div><!-- /.container-fluid -->
     </section>

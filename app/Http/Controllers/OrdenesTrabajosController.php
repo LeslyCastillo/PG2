@@ -19,7 +19,25 @@ use Throwable;
 class OrdenesTrabajosController extends Controller
 {
     public function index(){
-        $OrdenesTrabajos=OrdenTrabajo::all();
+        $OrdenesTrabajos=OrdenTrabajo::join('vehiculos', 'vehiculos.id', '=', 'orden_de_trabajo.vehiculos_id')
+        ->join('clientes', 'clientes.id', '=','orden_de_trabajo.clientes_id')
+        ->select('orden_de_trabajo.fecha_recepcion', 'clientes.nombre', 'clientes.nit',
+            'vehiculos.placa',
+            'orden_de_trabajo.estatus',
+            'orden_de_trabajo.id'
+        )->get();
+
+        $ordenesTrabajosTotal = $OrdenesTrabajos->map(function($orden){
+
+            $detalle = DetalleOrdenes::where('orden_de_trabajo_id', $orden->id)->sum('total');
+
+            $orden->total = $detalle;
+
+            return $orden;
+        });
+
+        $OrdenesTrabajos = $ordenesTrabajosTotal;
+
         return view("orden_trabajo.index", compact("OrdenesTrabajos"));
     }
 
@@ -35,7 +53,7 @@ class OrdenesTrabajosController extends Controller
 
         try{
             $vehiculo = new Vehiculo; //Modelo
-            $vehiculo->placa=$request->vehiculo['placa'];
+            $vehiculo->placa=strtoupper($request->vehiculo['placa']);
             $vehiculo->modelo=$request->vehiculo['modelo'];
             $vehiculo->color=$request->vehiculo['color'];
             $vehiculo->marcas_id=$request->vehiculo['marca'];
@@ -49,11 +67,11 @@ class OrdenesTrabajosController extends Controller
             //Comprobamos si no existe se ejecuta el if para registrarlo
             if(empty($cliente)){
                 $nuevo_cliente = new Cliente;
-                $nuevo_cliente->nombre = $request->cliente['nombre'];
+                $nuevo_cliente->nombre = strtoupper($request->cliente['nombre']);
                 $nuevo_cliente->nit = $request->cliente['nit'];
                 $nuevo_cliente->telefono = $request->cliente['telefono'];
-                $nuevo_cliente->direccion = $request->cliente['direccion'];
-                $nuevo_cliente->correo = $request->cliente['correo'];
+                $nuevo_cliente->direccion = strtoupper($request->cliente['direccion']);
+                $nuevo_cliente->correo = strtoupper($request->cliente['correo']);
                 $nuevo_cliente->save();
 
                 //Guardamos en variable $cliente para colocarlos en la Orden De Trabajo
@@ -73,6 +91,7 @@ class OrdenesTrabajosController extends Controller
                 $detalleOrden->servicios_id = $servicio['servicio']['id'];
                 $detalleOrden->observaciones = $servicio['observaciones'];
                 $detalleOrden->total = $servicio['precio'];
+                $detalleOrden->save();
             }
 
 
