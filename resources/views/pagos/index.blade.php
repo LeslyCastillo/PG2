@@ -25,12 +25,19 @@
         @foreach($pagos as $pago)
             <tr>
                 <th scope="row">{{$pago->id}}</th>
-                <td>{{$pago->fecha}}</td>
+                <td>{{date_format(date_create($pago->fecha), 'd-m-Y H:i')}}</td>
                 <td>{{$pago->nit}}</td>
-                <td>{{$pago->cliente}}</td>
-                <td>{{$pago->orden_trabajo_id}}</td>
-                <td>{{$pago->total}}</td>
-                <td>{{$pago->tipos_de_pagos_id}}</td>
+                <td>{{$pago->nombre}}</td>
+                <td>#{{$pago->orden_de_trabajo_id}}</td>
+                <td>Q{{number_format($pago->total,2)}}</td>
+                <td>
+                    @if($pago->tipo_de_pago==1)
+                        Efectivo
+                    @else
+                    Cheque
+
+                        @endif
+                </td>
             </tr>
         @endforeach
         </tbody>

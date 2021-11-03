@@ -59,7 +59,9 @@ Route::post("/cambiar_estado", [\App\Http\Controllers\OrdenesTrabajosController:
 //Pagos
 Route::get("/pagos", [\App\Http\Controllers\PagosController::class, 'index'])->name("pagos.index");
 Route::get('/crear_pagos',[\App\Http\Controllers\PagosController::class, 'created'])->name("pagos.created");
-Route::post("/guardar_pagos", [\App\Http\Controllers\PagosController::class, 'store'])->name("pagos.store");
+Route::post("/realizar_pago", [\App\Http\Controllers\PagosController::class, 'store'])->name("pagos.store");
+
+
 //tipos de vehiculos
 Route::get("/tiposvehiculos",[\App\Http\Controllers\TiposVehiculosController::class,'index'])->name("tipos_vehiculos.index");
 Route::get('/crear_tiposvehiculos',[\App\Http\Controllers\TiposVehiculosController::class, 'created'])->name("tipos_vehiculos.created");
