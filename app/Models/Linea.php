@@ -11,6 +11,5 @@ class Linea extends Model
     protected $table="lineas";
     protected $fillable=[
         'linea',
-        'marcas_id'
     ];
 }
