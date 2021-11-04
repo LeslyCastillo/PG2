@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class ServiciosController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -32,7 +28,7 @@ class ServiciosController extends Controller
     public function store(Request $request)
     {
         $servicio = new Servicio;//modelo
-        $servicio->servicio = $request->descripcion;
+        $servicio->servicio = strtoupper($request->descripcion);
         $servicio->save();
         return redirect()->route('servicios.index');//name de la ruta
     }

@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <form autocomplete="off" action="{{route("clientes.store")}}" method="post">
+    <form autocomplete="off" action="{{route("clientes.updated", $cliente->id)}}" method="post">
 
         @csrf
         <div class="form-row">

@@ -37,7 +37,7 @@
                 <td class="text-center">{{$vehiculo->descripcion}}</td>
                 <td class="text-center"> <form>
 {{--                        @csrf @method('DELETE')--}}
-                        <a href="{{route('orden_trabajo.index')}}" class="btn btn-outline-info btn-sm ">
+                        <a href="{{route('orden.pdf', $vehiculo->no_orden)}}" target="_blank" class="btn btn-outline-info btn-sm ">
                             <i class=" far fa-eye"> </i>
                               VER</a>
                     </form>
