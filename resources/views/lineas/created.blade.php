@@ -1,9 +1,9 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1 class="text-center">LÍNEAS</h1>
+    <h1 class="text-center"> REGISTRAR LÍNEA</h1>
 
-    <form action="{{route("lineas.store")}}" method="post">
+    <form autocomplete="off" action="{{route("lineas.store")}}" method="post">
         @csrf
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -13,7 +13,7 @@
 
         <div class="form-group col-md-6">
             <label>Marca</label>
-            <select name="marca" class="form-control" aria-label="Default select example">
+            <select  name="marca" class="form-control" aria-label="Default select example">
                 <option selected hidden>Selecciona una marca</option>
                 @foreach($marcas as $marca)
                     <option value="{{$marca->id}}">{{$marca->marca}}</option>

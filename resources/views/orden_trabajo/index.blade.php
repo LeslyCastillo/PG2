@@ -108,9 +108,11 @@
                     <p>
                     <h3>Total a Pagar: Q @{{ total.toFixed(2) }}</h3>
                     <select v-model="tipoPago" class="custom-select">
-                        <option value="0" hidden>Tipo de Pago</option>
+                        <option value="0" hidden>FORMA DE PAGO</option>
                         <option value="1">EFECTIVO</option>
                         <option value="2">CHEQUE</option>
+                        <option value="3">TARJETA DE CRÉDITO</option>
+                        <option value="4">DEPOSITO</option>
                     </select>
                     </p>
                 </div>
@@ -141,6 +143,7 @@
                     this.ordenTrabajo = id
                     $('#modalCreada').modal('show')
                 },
+
                 guardarOrden: function () {
                     document.getElementById("btnCambiarEstado").disabled = true;
                     axios

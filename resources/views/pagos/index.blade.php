@@ -26,7 +26,7 @@
         @foreach($pagos as $pago)
             <tr>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{date_format(date_create($pago->fecha), 'd-m-Y H:i')}}</td>
+                <td>{{date_format(date_create($pago->fecha), 'd-m-Y')}}</td>
                 <td>{{$pago->nit}}</td>
                 <td>{{$pago->nombre}}</td>
                 <td class="text-center">#{{$pago->orden_de_trabajo_id}}</td>
@@ -41,7 +41,7 @@
                 </td>
                 <td class="text-center"> <form>
                         {{--                        @csrf @method('DELETE')--}}
-                        <a href="{{route('orden_trabajo.index')}}" class="btn btn-outline-info btn-sm ">
+                        <a href="{{route('comprobante.pdf', $pago->id)}}" target="_blank" class="btn btn-outline-info btn-sm ">
                             <i class=" far fa-eye"> </i>
                             VER</a>
                     </form>

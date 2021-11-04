@@ -39,8 +39,8 @@ class ClientesController extends Controller
         return back()->with('clienteEliminado','Cliente Eliminado');
     }
 
-    public function find(){
-        return Cliente::all();
+    public function find(Request $request){
+        return Cliente::where('nit', $request->nit)->first();
     }
     //editar
     public function edit($id){

@@ -32,4 +32,15 @@ class MarcasController extends Controller
     public function find(){
         return Marca::all();
     }
+
+    public function edit($id){
+        $marca=Marca::find($id);
+        return view("marcas.edit", compact("marca"));
+    }
+
+    public function updated(Request $request, $id){
+        $marca=Marca::find($id);
+        $marca->fill($request->all())->save();
+        return redirect()->route("marcas.index");
+    }
 }

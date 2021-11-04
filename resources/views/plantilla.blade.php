@@ -105,12 +105,38 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">MENU</li>
+            <li class="nav-item">
+                <a href="{{route("orden_trabajo.index")}}" class="nav-link">
+
+                    <i class="nav-icon far fa-newspaper"></i>
+                    <p>
+                        Ordenes de trabajo
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("clientes.index")}}" class="nav-link">
+
+                    <i class="nav-icon fas fa-user-edit"></i>
+                    <p>
+                        Clientes
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("servicios.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    <p>
+                        Listado de Servicios
+                    </p>
+                </a>
+            </li>
           <li class="nav-item">
             <a href="{{route("vehiculos.index")}}" class="nav-link">
               <i class="nav-icon fas fa-car"></i>
 
               <p>
-                Vehiculos
+                Vehiculos Trabajados
               </p>
             </a>
           </li>
@@ -123,23 +149,24 @@
 {{--                    </p>--}}
 {{--                </a>--}}
 {{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--                <a href="{{route("lineas.index")}}" class="nav-link">--}}
-{{--                    <i class="nav-icon fas fa-grip-lines"></i>--}}
 
-{{--                    <p>--}}
-{{--                        Lineas--}}
-{{--                    </p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--                <a href="{{route("marcas.index")}}" class="nav-link">--}}
-{{--                    <i class="nav-icon fas fa-check-circle"></i>--}}
-{{--                    <p>--}}
-{{--                        Marcas--}}
-{{--                    </p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            <li class="nav-item">
+                <a href="{{route("marcas.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-check-circle"></i>
+                    <p>
+                        Listado de Marcas
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("lineas.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-grip-lines"></i>
+
+                    <p>
+                        Listado de LÍneas
+                    </p>
+                </a>
+            </li>
 {{--          <li class="nav-item">--}}
 {{--            <a href="pages/calendar.html" class="nav-link">--}}
 {{--              <i class="nav-icon fas fa-user-friends"></i>--}}
@@ -148,32 +175,7 @@
 {{--              </p>--}}
 {{--            </a>--}}
 {{--          </li>--}}
-          <li class="nav-item">
-            <a href="{{route("clientes.index")}}" class="nav-link">
 
-              <i class="nav-icon fas fa-user-edit"></i>
-              <p>
-                Clientes
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-                <a href="{{route("servicios.index")}}" class="nav-link">
-                    <i class="nav-icon fas fa-list-alt"></i>
-                    <p>
-                        Servicios
-                    </p>
-                </a>
-            </li>
-          <li class="nav-item">
-            <a href="{{route("orden_trabajo.index")}}" class="nav-link">
-
-              <i class="nav-icon far fa-newspaper"></i>
-              <p>
-                Orden de trabajo
-              </p>
-            </a>
-          </li>
             <li class="nav-item">
                 <a href="{{route("pagos.index")}}" class="nav-link">
                     <i class="nav-icon fas fa-dollar-sign"></i>

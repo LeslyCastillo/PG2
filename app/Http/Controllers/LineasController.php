@@ -35,4 +35,16 @@ class LineasController extends Controller
     public function find(){
         return Linea::all();
     }
+
+    public function edit($id){
+        $linea=Linea::find($id);
+        $marcas=Marca::all();
+        return view("lineas.edit", compact("linea", "marcas"));
+    }
+
+    public function updated(Request $request, $id){
+        $linea=Linea::find($id);
+        $linea->fill($request->all())->save();
+        return redirect()->route("linea.index");
+    }
 }

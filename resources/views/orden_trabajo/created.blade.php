@@ -81,7 +81,7 @@
 
             <div class="form-group col-md-2 col-sm-6">
                 <label>Nit:</label>
-                <input id="nit" v-model="cliente.nit" required name="nit" type="text" class="form-control">
+                <input id="nit" v-on:keyup.enter="buscarCliente" v-model="cliente.nit" required name="nit" type="text" class="form-control">
             </div>
             <div class="form-group col-md-3 col-sm-6">
                 <label>Nombre Completo:</label>
@@ -259,6 +259,21 @@
                         .get('/api/servicios')
                         .then(response => {
                             this.servicios = response.data
+                        })
+                },
+                buscarCliente: function () {
+                    axios
+                        .post('/buscar_clientes', {nit: this.cliente.nit})
+                        .then(response => {
+                            if (response.data!==''){
+                                this.cliente=response.data
+                            }
+                            else {
+                                this.cliente.nombre=''
+                                this.cliente.direccion=''
+                                this.cliente.correo=''
+                                this.cliente.telefono=''
+                            }
                         })
                 },
                 guardarOrden: function(){

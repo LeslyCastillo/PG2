@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1>Marcas</h1>
+    <h1 class="text-center">REGISTRAR MARCA</h1>
 
     <form action="{{route("marcas.store")}}" method="post">
         @csrf
@@ -10,7 +10,9 @@
             <input name="marca" type="text" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <div  class=" d-flex mt-4 justify-content-center">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
     </form>
 
 @endsection

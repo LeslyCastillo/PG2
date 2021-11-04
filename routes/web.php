@@ -22,6 +22,7 @@ Route::post("/guardar_servicios", [\App\Http\Controllers\ServiciosController::cl
 route::delete("/delete/{id}",[\App\Http\Controllers\ServiciosController::class, 'delete'])->name('delete');
 Route::get("/servicios/{id}/edit",  [\App\Http\Controllers\ServiciosController::class, 'edit'])->name("servicios.edit");
 Route::post("/servicios/{id}/updated", [\App\Http\Controllers\ServiciosController::class, 'updated'])->name("servicios.updated");
+Route::get('/api/servicios', [\App\Http\Controllers\ServiciosController::class, 'all']);
 
 
 
@@ -44,12 +45,20 @@ Route::get("/lineas", [\App\Http\Controllers\LineasController::class, 'index'])-
 Route::get('/crear_lineas',[\App\Http\Controllers\LineasController::class, 'created'])->name("lineas.created");
 Route::post("/guardar_lineas", [\App\Http\Controllers\LineasController::class, 'store'])->name("lineas.store");
 Route::post("/buscar_lineas", [\App\Http\Controllers\LineasController::class, 'find'])->name("linea.buscar");
+Route::get("/lineas/{id}/edit",  [\App\Http\Controllers\LineasController::class, 'edit'])->name("lineas.edit");
+Route::post("/lineas/{id}/updated", [\App\Http\Controllers\LineasController::class, 'updated'])->name("lineas.updated");
+
+
 
 //marcas
 Route::get("/marcas", [\App\Http\Controllers\MarcasController::class, 'index'])->name("marcas.index");
 Route::get('/crear_marcas',[\App\Http\Controllers\MarcasController::class, 'created'])->name("marcas.created");
 Route::post("/guardar_marcas", [\App\Http\Controllers\MarcasController::class, 'store'])->name("marcas.store");
 Route::post("/buscar_marcas", [\App\Http\Controllers\MarcasController::class, 'find'])->name("marca.buscar");
+Route::get("/marcas/{id}/edit",  [\App\Http\Controllers\MarcasController::class, 'edit'])->name("marcas.edit");
+Route::post("/marcas/{id}/updated", [\App\Http\Controllers\MarcasController::class, 'updated'])->name("marcas.updated");
+
+
 //Ordenes de trabajo
 Route::get("/ordenestrabajos",[\App\Http\Controllers\OrdenesTrabajosController::class, 'index'])->name("orden_trabajo.index");
 Route::get('/crear_ordenestrabajos',[\App\Http\Controllers\OrdenesTrabajosController::class, 'created'])->name("orden_trabajo.created");
@@ -71,8 +80,10 @@ Route::get("/tipospagos",[\App\Http\Controllers\TiposPagosController::class,'ind
 Route::get('/crear_tipospagos',[\App\Http\Controllers\TiposPagosController::class, 'created'])->name("tipos_pagos.created");
 Route::post("/guardar_tipospagos", [\App\Http\Controllers\TiposPagosController::class, 'store'])->name("tipos_pagos.store");
 
-
+//pdf
 Route::get("/orden_trabajo/{id}",[\App\Http\Controllers\PdfController::class,'streamPDF'])->name("orden.pdf");
+Route::get("/comprobante/{id}",[\App\Http\Controllers\PdfController::class,'streamComprobantePDF'])->name("comprobante.pdf");
+
 
 
 Auth::routes();

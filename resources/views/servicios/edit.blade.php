@@ -1,13 +1,13 @@
 @extends('plantilla')
 
 @section('contenido')
-    <h1 class="text-center">SERVICIOS </h1>
+    <h1 class="text-center"> EDITAR SERVICIO </h1>
 
     <form autocomplete="off" action="{{route("servicios.updated", $servicio->id)}}" method="post">
         @csrf
         <div class="form-group">
             <label>Descripción del Servicio:</label>
-            <input name="descripcion" type="text" class="form-control">
+            <input name="servicio" type="text" class="form-control">
 
         </div>
 

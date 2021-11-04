@@ -7,7 +7,7 @@
         @csrf
         <div class="form-group">
             <label>Descripción del Servicio:</label>
-            <input name="descripcion" type="text" class="form-control">
+            <input name="servicio" type="text" class="form-control">
 
         </div>
 
