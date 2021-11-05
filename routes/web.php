@@ -23,7 +23,7 @@ route::delete("/delete/{id}",[\App\Http\Controllers\ServiciosController::class, 
 Route::get("/servicios/{id}/edit",  [\App\Http\Controllers\ServiciosController::class, 'edit'])->name("servicios.edit");
 Route::post("/servicios/{id}/updated", [\App\Http\Controllers\ServiciosController::class, 'updated'])->name("servicios.updated");
 Route::get('/api/servicios', [\App\Http\Controllers\ServiciosController::class, 'all']);
-
+route::get('/reportes/vehiculos/{placa}',[\App\Http\Controllers\ReporteController::class,'vehiculos'])->name("reportes.vehiculos");
 
 
 //Clientes
@@ -34,6 +34,7 @@ route::delete("/delete/{id}",[\App\Http\Controllers\ClientesController::class, '
 Route::post("/buscar_clientes", [\App\Http\Controllers\ClientesController::class, 'find'])->name("cliente.buscar");
 Route::get("/clientes/{id}/edit",  [\App\Http\Controllers\ClientesController::class, 'edit'])->name("clientes.edit");
 Route::post("/clientes/{id}/updated", [\App\Http\Controllers\ClientesController::class, 'updated'])->name("clientes.updated");
+route::get('/reportes/clientes/{nit}',[\App\Http\Controllers\ReporteController::class,'clientes'])->name("reportes.clientes");
 
 
 //vehiculos

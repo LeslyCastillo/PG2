@@ -20,6 +20,7 @@
             <th scope="col">Marca</th>
             <th scope="col" class="text-center">Tipo de Vehiculo</th>
             <TH scope="col" class="text-center">Orden de Trabajo</TH>
+            <th scope="col" class="text-center">Historial de Servicios</th>
 
         </tr>
         </thead>
@@ -40,6 +41,14 @@
                         <a href="{{route('orden.pdf', $vehiculo->no_orden)}}" target="_blank" class="btn btn-outline-info btn-sm ">
                             <i class=" far fa-eye"> </i>
                               VER</a>
+                    </form>
+
+                </td>
+                <td class="text-center"> <form>
+                        {{--                        @csrf @method('DELETE')--}}
+                        <a href="{{route('reportes.vehiculos', $vehiculo->placa)}}" class="btn btn-outline-info btn-sm ">
+                            <i class=" far fa-eye"> </i>
+                            VER</a>
                     </form>
 
                 </td>

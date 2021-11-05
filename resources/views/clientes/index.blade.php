@@ -18,6 +18,7 @@
             <th scope="col">Dirección</th>
             <th scope="col">Correo Electrónico</th>
             <th scope="col">Acciones</th>
+            <th scope="col" class="text-center">Historial de Servicios</th>
 
         </tr>
         </thead>
@@ -41,6 +42,14 @@
                 </form>
 
                </td>
+                <td class="text-center"> <form>
+                        {{--                        @csrf @method('DELETE')--}}
+                        <a href="{{route('reportes.clientes', $cliente->nit)}}" class="btn btn-outline-info btn-sm ">
+                            <i class=" far fa-eye"> </i>
+                            VER</a>
+                    </form>
+
+                </td>
             </tr>
         @endforeach
         </tbody>
