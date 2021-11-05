@@ -34,9 +34,14 @@
                 <td class="text-center">
                     @if($pago->tipo_de_pago==1)
                         Efectivo
+                    @elseif($pago->tipo_de_pago==2)
+                        Cheque
+                    @elseif($pago->tipo_de_pago==3)
+                        Tarjeta de Crédito
+                    @elseif($pago->tipo_de_pago==4)
+                        Deposito
                     @else
-                    Cheque
-
+                        No asignado
                         @endif
                 </td>
                 <td class="text-center"> <form>

@@ -7,6 +7,7 @@ use App\Models\OrdenTrabajo;
 use App\Models\Pago;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use function Sodium\add;
 
 class PdfController extends Controller
 {
@@ -49,7 +50,11 @@ class PdfController extends Controller
     public function streamComprobantePDF($id){
         $pago = Pago::where('pagos.id', $id)->join('orden_de_trabajo', 'orden_de_trabajo.id', '=', 'pagos.orden_de_trabajo_id')
             ->join('clientes', 'clientes.id', '=', 'orden_de_trabajo.clientes_id')
-            ->select('clientes.nit', 'clientes.nombre', 'pagos.*')->first();
+            ->join('vehiculos', 'vehiculos.id', '=', 'orden_de_trabajo.vehiculos_id')
+            ->join('marcas', 'marcas.id','=', 'vehiculos.marcas_id')
+            ->join('tipo_vehiculos', 'tipo_vehiculos.id', '=', 'vehiculos.tipo_vehiculos_id')
+            ->select('clientes.nit', 'clientes.nombre', 'clientes.direccion', 'vehiculos.placa', 'marcas.marca',
+                'vehiculos.color', 'tipo_vehiculos.descripcion','pagos.*')->first();
 
 
         $detalle = DetalleOrdenes::where('orden_de_trabajo_id',$pago->orden_de_trabajo_id)

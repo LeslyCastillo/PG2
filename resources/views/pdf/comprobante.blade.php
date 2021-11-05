@@ -62,9 +62,9 @@
     <div class="col-xs-2">
         <img src="https://pg.syscastillo.com/dist/img/LogoAgencia.jpg" style="height: 80px; width: 100%; margin-top: 5px; line-height: 5px;margin-bottom: 0;" />
     </div>
-    <div class="col-xs-4">
-        <p>
-        <h4>ORDEN DE TRABAJO</h4>
+    <div class="col-xs-4 text-center">
+        <p >
+        <h3 class="text-center">RECIBO</h3>
         23 y 24 Calle, Ruta Principal <br>
         Puerto Barrios, Izabal, Guatemala <br>
         Tel.: 7942-9747 - Fax: 7942-9746
@@ -72,8 +72,20 @@
     </div>
     <div class="col-xs-4">
         <div>
-            Fecha De Recepción {{\Carbon\Carbon::create($pago->fecha)->format('d-m-Y')}}
-
+           <b> Fecha De Pago:</b> {{\Carbon\Carbon::create($pago->fecha)->format('d-m-Y')}}<br>
+           <b> Forma De Pago: </b> @if($pago->tipo_de_pago==1)
+                Efectivo
+            @elseif($pago->tipo_de_pago==2)
+                Cheque
+            @elseif($pago->tipo_de_pago==3)
+                Tarjeta de Crédito
+            @elseif($pago->tipo_de_pago==4)
+                Deposito
+            @else
+                No asignado
+            @endif
+            <br>
+            <b>Número De Orden:</b> {{$pago->orden_de_trabajo_id}}
         </div>
     </div>
 </div>
@@ -84,25 +96,32 @@
 <table class="table table-bordered">
     <tbody>
     <tr>
-        <th colspan="6" class="text-center" style=" background: #d9dcd9; ">DATOS DEL VEHICULO</th>
+        <th colspan="4" class="text-center" style=" background: #d9dcd9; ">DATOS</th>
     </tr>
     <tr>
-        <td class="text-center" scope="row"><b>PLACA:</b> <br> {{$pago->total}}</td>
+        <td class="text-center" scope="row"><b>NIT:</b> <br> {{$pago->nit}}</td>
+        <td  colspan="2" class="text-center" scope="row"><b>NOMBRE:</b> <br> {{$pago->nombre}}</td>
+        <td class="text-center" scope="row"><b>DIRECCIÓN:</b> <br> {{$pago->direccion}}</td>
+
+    </tr>
+    <tr>
+        <td class="text-center" scope="row"><b>PLACA:</b> <br> {{$pago->placa}}</td>
+        <td class="text-center" scope="row"><b>MARCA:</b> <br> {{$pago->marca}}</td>
+        <td class="text-center" scope="row"><b>COLOR:</b> <br> {{$pago->color}}</td>
+        <td class="text-center" scope="row"><b>TIPO DE VEHÍCULO:</b> <br> {{$pago->descripcion}}</td>
 
     </tr>
     </tbody>
 </table>
-<table class="table table-bordered">
-    <tbody>
-    <tr>
-        <th colspan="5" class="text-center" style=" background: #d9dcd9; ">DATOS DEL CLIENTE</th>
-    </tr>
-    <tr>
-        <td class="text-center" scope="row"><b>PLACA:</b> <br> {{$pago->total}}</td>
+{{--<table class="table table-bordered">--}}
+{{--    <tbody>--}}
+{{--    <tr>--}}
+{{--        <th colspan="4" class="text-center"  style=" background: #d9dcd9; ">DATOS DEL VEHÍCULO</th>--}}
+{{--    </tr>--}}
+{{--   --}}
+{{--    </tbody>--}}
+{{--</table>--}}
 
-    </tr>
-    </tbody>
-</table>
 <table class="table table-bordered">
     <tbody>
     <tr>
@@ -135,25 +154,19 @@
         <div class="col-xs-5" style="line-height: 15px">
             f/<br>
             ______________________________________ <br>
-            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; FIRMA DEL MECÁNICO
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CAJA
         </div>
-        <div class="col-xs-6" style="line-height: 15px">
-            f/<br>
-            ______________________________________ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;FIRMA DEL CLIENTE
-        </div>
+{{--        <div class="col-xs-6" style="line-height: 15px">--}}
+{{--            f/<br>--}}
+{{--            ______________________________________ <br>--}}
+{{--            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;FIRMA DEL CLIENTE--}}
+{{--        </div>--}}
     </div>
     <div class="row" style="margin-bottom: 15px!important;">
         <div class="col-xs-10" style="margin-left: 20px; margin-top:40px; text-align: justify; font-size: 10px">
             <p>
-                <b>CONDICIONES ACEPTADAS POR EL CLIENTE: </b>
-                <br>
-                <b>1.</b> Autorizo para que mi vehículo sea probado fuera de las instalaciones.
-                <br>
-                <b>2.</b> Ningún vehículo será entregado sin antes cancelar.
-                <br>
-                <b>3.</b> La empresa no se hace responsable por daños al vehículo debido a causas naturales o de fuerza mayor,
-                ni por objetos olvidados dentro del mismo.
+
             </p>
         </div>
     </div>
