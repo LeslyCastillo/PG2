@@ -24,7 +24,7 @@ Route::get("/servicios/{id}/edit",  [\App\Http\Controllers\ServiciosController::
 Route::post("/servicios/{id}/updated", [\App\Http\Controllers\ServiciosController::class, 'updated'])->name("servicios.updated");
 Route::get('/api/servicios', [\App\Http\Controllers\ServiciosController::class, 'all']);
 route::get('/reportes/vehiculos/{placa}',[\App\Http\Controllers\ReporteController::class,'vehiculos'])->name("reportes.vehiculos");
-
+route::get('/servicios/periodo', [\App\Http\Controllers\ReporteController::class, 'periodo'])->name("reportes.periodo");
 
 //Clientes
 Route::get("/clientes", [\App\Http\Controllers\ClientesController::class, 'index'])->name("clientes.index");

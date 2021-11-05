@@ -48,7 +48,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="/" class="nav-link">Inicio</a>
       </li>
 
     </ul>
@@ -119,7 +119,7 @@
 
                     <i class="nav-icon fas fa-user-edit"></i>
                     <p>
-                        Clientes
+                        Listado de Clientes
                     </p>
                 </a>
             </li>
@@ -128,6 +128,14 @@
                     <i class="nav-icon fas fa-list-alt"></i>
                     <p>
                         Listado de Servicios
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route("reportes.periodo")}}" class="nav-link">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <p>
+                        Servicios Según Período
                     </p>
                 </a>
             </li>
@@ -180,7 +188,7 @@
                 <a href="{{route("pagos.index")}}" class="nav-link">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
-                        Pagos
+                        Vista de Pagos
                     </p>
                 </a>
             </li>

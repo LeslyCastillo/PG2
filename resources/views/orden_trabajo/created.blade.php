@@ -161,7 +161,7 @@
     </form>
     <form id="registrar_ot">
         <div class=" d-flex mt-4 justify-content-center">
-            <button id="btnRegistrarOrden" v-on:click="guardarOrden" class="btn btn-primary">Registrar</button>
+            <a href="#" id="btnRegistrarOrden" v-on:click="guardarOrden" class="btn btn-primary">Registrar</a>
         </div>
     </form>
     <script>
@@ -265,42 +265,47 @@
                     axios
                         .post('/buscar_clientes', {nit: this.cliente.nit})
                         .then(response => {
-                            if (response.data!==''){
-                                this.cliente=response.data
-                            }
-                            else {
-                                this.cliente.nombre=''
-                                this.cliente.direccion=''
-                                this.cliente.correo=''
-                                this.cliente.telefono=''
+                            if (response.data !== '') {
+                                this.cliente = response.data
+                            } else {
+                                this.cliente.nombre = ''
+                                this.cliente.direccion = ''
+                                this.cliente.correo = ''
+                                this.cliente.telefono = ''
                             }
                         })
                 },
-                guardarOrden: function(){
+                guardarOrden: function () {
+                    if (this.serviciosAgregados.length!==0) {//que no sea igual a cero
+                        document.getElementById("btnRegistrarOrden").disabled = true;
+                        axios
+                            .post('/guardar_ordenestrabajos', {
+                                servicios: this.serviciosAgregados, cliente: this.cliente, vehiculo: this.vehiculo
+                            })
+                            .then(response => {
+                                toastr.success('Orden de trabajo registrada con exito.')
+                                setTimeout(function () {
+                                    location.reload()
 
-                    document.getElementById("btnRegistrarOrden").disabled = true;
-                    axios
-                        .post('/guardar_ordenestrabajos', {
-                            servicios: this.serviciosAgregados, cliente: this.cliente, vehiculo: this.vehiculo
-                        })
-                        .then(response => {
-                            toastr.success('Orden de trabajo registrada con exito.')
-                            setTimeout(function(){
-                                location.reload()
-                            },3000)
+                                }, 3000)
 
-                        })
-                },
-                agregarServicio: function () {
-                    if (this.addServicio.servicio == '' || this.addServicio.precio == '') {
+                            })
+                    }else{
                         toastr.error('No se rellenaron los campos.')
-                    } else {
-                        let copyService = Object.assign({}, this.addServicio)
-                        this.serviciosAgregados.push(copyService)
-                        this.addServicio =  Object.assign({}, this.addServicioDefault)
-                        toastr.success('Se añadio el servicio!')
                     }
-                }
+                },
+
+                    agregarServicio: function () {
+                        if (this.addServicio.servicio == '' || this.addServicio.precio == '') {
+                            toastr.error('No se rellenaron los campos.')
+                        } else {
+                            let copyService = Object.assign({}, this.addServicio)
+                            this.serviciosAgregados.push(copyService)
+                            this.addServicio = Object.assign({}, this.addServicioDefault)
+                            toastr.success('Se añadio el servicio!')
+                        }
+                    }
+
             }
         })
     </script>
