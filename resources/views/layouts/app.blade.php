@@ -48,11 +48,11 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item ">
-                                    <a class=" text-white nav-link" href="{{ route('register') }}">{{ __('Registrarte') }}</a>
-                                </li>
-                            @endif
+{{--                            @if (Route::has('register'))--}}
+{{--                                <li class="nav-item ">--}}
+{{--                                    <a class=" text-white nav-link" href="{{ route('register') }}">{{ __('Registrarte') }}</a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
                         @else
                             <li class="nav-item dropdown text-white">
                                 <a id="navbarDropdown" class="text-white nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
