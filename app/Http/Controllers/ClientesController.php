@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use http\Client;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -12,8 +13,12 @@ class ClientesController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index() {
-        $clientes=Cliente::all();
+    public function index(Request $request) {
+        if($request->has('nit')){
+            $clientes  = Cliente::where('nit', 'like', $request->nit)->get();
+        }else{
+            $clientes=Cliente::all();
+        }
         return view("clientes.index", compact("clientes"));
 
     }

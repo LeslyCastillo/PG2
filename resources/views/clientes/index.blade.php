@@ -2,9 +2,20 @@
 
 @section('contenido')
     <h1 class="text-center">CLIENTES</h1>
+    <div class="d-flex justify-content-between">
+        <form class="mr-auto" action="{{route('clientes.index')}}">
+            <div class="form-group">
+                <input name="nit" type="text" class="form-control" placeholder="Buscar por NIT">
+            </div>
+        </form>
+        <div>
+            <a class="btn btn-success" href="{{route('clientes.created')}}">
+                <i class="fas fa-plus-circle"></i> Nuevo Cliente</a>
+        </div>
+
+    </div>
     <div class="d-flex justify-content-end">
-        <a class="btn btn-success" href="{{route('clientes.created')}}">
-            <i class="fas fa-plus-circle"></i> Nuevo Cliente</a>
+
     </div>
     <br>
 
