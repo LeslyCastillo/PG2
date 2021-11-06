@@ -16,13 +16,18 @@ class VehiculosController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->has('placa') ? $placa = $request->placa : $placa = false;
+
         $vehiculos = OrdenTrabajo::join("vehiculos", "orden_de_trabajo.vehiculos_id", "=", "vehiculos.id")
             ->join("marcas", "marcas.id", "=", "vehiculos.marcas_id")
             ->join("lineas", "lineas.id", "=", "vehiculos.lineas_id")
             ->join("tipo_vehiculos", "tipo_vehiculos.id", "=", "vehiculos.tipo_vehiculos_id")
             ->join("clientes", "clientes.id", "=", "orden_de_trabajo.clientes_id")
+            ->when($placa, function($query,$placa){
+                return $query->where('placa', 'like', $placa);
+            })
             ->select("vehiculos.*", "lineas.linea", "marcas.marca", "tipo_vehiculos.descripcion", "clientes.nit",
                "clientes.nombre", "orden_de_trabajo.id as no_orden")->get();
         return view("vehiculos.index", compact("vehiculos"));

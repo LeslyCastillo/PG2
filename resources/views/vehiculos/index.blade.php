@@ -6,7 +6,11 @@
 {{--    <a class="btn btn-primary"  style=background-color:forestgreen href="{{route('vehiculos.created')}}">--}}
 {{--        <i class="fas fa-plus-circle"></i>--}}
 {{--         Crear vehiculo</a>--}}
-
+    <form class="mr-auto" action="{{route('vehiculos.index')}}">
+        <div class="form-group">
+            <input name="placa" type="text" class="form-control" placeholder="Buscar por placa">
+        </div>
+    </form>
     <table class="table">
         <thead>
         <tr>
