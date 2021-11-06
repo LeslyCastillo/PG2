@@ -85,21 +85,21 @@
             </div>
             <div class="form-group col-md-3 col-sm-6">
                 <label>Nombre Completo:</label>
-                <input id="cliente" v-model="cliente.nombre" required name="nombre" type="text" class="form-control">
+                <input maxlength="60"  id="cliente" v-model="cliente.nombre" required name="nombre" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-3 col-sm-6">
                 <label>Dirección:</label>
-                <input id="direccion" v-model="cliente.direccion" required name="direccion" type="text" class="form-control">
+                <input maxlength="60" id="direccion" v-model="cliente.direccion" required name="direccion" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-2 col-sm-6">
                 <label>Teléfono:</label>
-                <input id="telefono" type="number" maxlength="8" required v-model="cliente.telefono" name="telefono" class="form-control">
+                <input maxlength="8" id="telefono" type="number" maxlength="8" required v-model="cliente.telefono" name="telefono" class="form-control">
             </div>
             <div class="form-group col-md-2 col-sm-6">
                 <label>Correo:</label>
-                <input id="correo" name="correo" v-model="cliente.correo" type="email" class="form-control">
+                <input maxlength="45"  id="correo" name="correo" v-model="cliente.correo" type="email" class="form-control">
             </div>
 
         </div>
