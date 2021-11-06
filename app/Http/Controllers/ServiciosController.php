@@ -32,7 +32,7 @@ class ServiciosController extends Controller
     public function store(Request $request)
     {
         $servicio = new Servicio;//modelo
-        $servicio->servicio = strtoupper($request->descripcion);
+        $servicio->servicio = strtoupper($request->servicio);
         $servicio->save();
         return redirect()->route('servicios.index');//name de la ruta
     }
